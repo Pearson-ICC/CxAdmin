@@ -1,0 +1,9 @@
+*.csv
+output/*
+config*.json
+__pycache__/
+*.py[cod]
+Pearson/
+**_internal.py
+**_internal.json
+**.DS_Store
