@@ -68,7 +68,7 @@ cx.lists.getAllLists()
 cx.lists.getListByID(listID)
 ```
 
-#### Upload list
+#### Upload a list
 ```python
 cx.lists.uploadList(cxList)
 ```
