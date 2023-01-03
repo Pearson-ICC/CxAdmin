@@ -1,11 +1,11 @@
-from api.cxItems.cxLists import CxLists
-from api.cxItems.cxQueues import CxQueues
-from api.cxItems.cxStatistics import CxStatistics
-from api.cxItems.cxEnvironment import CxEnvironment
-from api.cxItems.cxFlows import CxFlows
+from CxAdmin.api.cxItems.cxLists import CxLists
+from CxAdmin.api.cxItems.cxQueues import CxQueues
+from CxAdmin.api.cxItems.cxStatistics import CxStatistics
+from CxAdmin.api.cxItems.cxEnvironment import CxEnvironment
+from CxAdmin.api.cxItems.cxFlows import CxFlows
 
-from api.httpclient import HTTPClient
-from api.httpClientModel import HTTPClientModel
+from CxAdmin.api.httpclient import HTTPClient
+from CxAdmin.api.httpClientModel import HTTPClientModel
 
 import json
 

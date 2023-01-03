@@ -1,5 +1,5 @@
 from typing import Any
-from api.cxItems.cxItem import CxItem
+from CxAdmin.api.cxItems.cxItem import CxItem
 
 
 class CxStatistics(CxItem):

@@ -1,4 +1,4 @@
-from api.httpClientModel import HTTPClientModel
+from CxAdmin.api.httpClientModel import HTTPClientModel
 from typing import Any, Optional
 from requests import get, post
 

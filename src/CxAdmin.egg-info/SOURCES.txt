@@ -1,0 +1,6 @@
+pyproject.toml
+setup.cfg
+src/CxAdmin.egg-info/PKG-INFO
+src/CxAdmin.egg-info/SOURCES.txt
+src/CxAdmin.egg-info/dependency_links.txt
+src/CxAdmin.egg-info/top_level.txt

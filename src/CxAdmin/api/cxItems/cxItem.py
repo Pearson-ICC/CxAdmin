@@ -1,4 +1,4 @@
-from api.httpClientModel import HTTPClientModel
+from CxAdmin.api.httpClientModel import HTTPClientModel
 
 
 class CxItem:
