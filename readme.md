@@ -18,9 +18,9 @@ This API is designed to be easily expandable. If you would like to add functiona
 ### Set up API client
 
 ```python
-from api.cx import Cx
+from CxAdmin import cx as cxadmin
 
-cx = Cx(
+cx = cxadmin.Cx(
     baseURL="your_base_url", # https://eu-west-1-prod-api.cxengage.net for EU, https://api.cxengage.net for US
     apiKey="your_api_key",
     apiSecret="your_api_secret",
@@ -31,9 +31,9 @@ cx = Cx(
 or
 
 ```python
-from api.cx import Cx
+from CxAdmin import cx as cxadmin
 
-cx = Cx.fromConfigFile("config.json")
+cx = cxadmin.Cx.fromConfigFile("config.json")
 ```
 
 > Example config.json
