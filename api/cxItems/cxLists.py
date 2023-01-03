@@ -1,7 +1,7 @@
 from typing import Any
 from api.cxItems.cxItem import CxItem
 from objects.cxList import CxList
-from split_csvs import split_csv
+from api.cxItems.split_csvs import split_csv
 
 
 class CxLists(CxItem):
