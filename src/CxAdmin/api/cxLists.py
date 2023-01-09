@@ -1,10 +1,21 @@
 from typing import Any
-from CxAdmin.api.cxItems.cxItem import CxItem
-from CxAdmin.objects.cxList import CxList
-from CxAdmin.api.cxItems.split_csvs import split_csv
+from api.cxItem import CxItem
+from objects.cxList import CxList
 
 
 class CxLists(CxItem):
+    @staticmethod
+    def __split_csv(every: int, csv: str) -> list[str]:
+        """Helper function to split a csv into chunks of a given size."""
+        lines = csv.splitlines()
+        # get header row
+        header = lines[0]
+        # return ["\n".join(lines[i : i + every]) for i in range(0, len(lines), every)]
+        return [
+            (header + "\n" + "\n".join(lines[i : i + every]))
+            for i in range(1, len(lines), every)
+        ]
+
     def getAllLists(self) -> list[CxList]:
         listsJson: list[dict[str, str]] = self._httpClient.get(self._path)
         lists = [CxList.from_json(thisListJson) for thisListJson in listsJson]
@@ -34,7 +45,7 @@ class CxLists(CxItem):
             file.close()
 
             # split csv into 1000 line chunks as CxEngage only lets you upload 1000 at a time
-            for i, csv_splitted in enumerate(split_csv(1000, csv)):
+            for i, csv_splitted in enumerate(self.__split_csv(1000, csv)):
                 print(len(csv_splitted.splitlines()))
                 file = open(f"output/{routingList.name}_split_{i}.csv", "w")
                 file.write(csv_splitted)
