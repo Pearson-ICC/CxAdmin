@@ -142,3 +142,6 @@ class CxList:
             csvData += ",".join(row) + "\n"
 
         return csvData
+
+    def __str__(self) -> str:
+        return f"CxList({self.id}, {self.name})"
