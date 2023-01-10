@@ -16,32 +16,20 @@ class HTTPClient(HTTPClientModel):
             "Content-Type": "application/json",
         }
 
-    def get(self, path: str, withResultJsonKey: bool = True) -> list[dict[str, Any]]:
-        if withResultJsonKey == False:
-            response = HTTPClient._get(
-                path=self.__basePath + path,
-                headers=self.__headers,
-            )
-            return response
-        else:
-            response = HTTPClient._get_json(
-                path=self.__basePath + path,
-                headers=self.__headers,
-            )
-            return response["result"]
+    def get(self, path: str) -> list[dict[str, Any]]:
+        response = HTTPClient._get(
+            path=self.__basePath + path,
+            headers=self.__headers,
+        )
+        return response
 
-    def post(
-        self, path: str, data: Any, withResultJsonKey: bool = True
-    ) -> dict[str, Any]:
+    def post(self, path: str, data: Any) -> dict[str, Any]:
         response = HTTPClient._post(
             path=self.__basePath + path,
             headers=self.__headers,
             body=data,
         )
-        if withResultJsonKey:
-            return response["result"]
-        else:
-            return response.text  # type: ignore
+        return response
 
     @staticmethod
     def _get(path: str, headers: dict[str, Any]) -> Any:

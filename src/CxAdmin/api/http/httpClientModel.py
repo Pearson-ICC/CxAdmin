@@ -8,13 +8,11 @@ class HTTPClientModel:
         ...
 
     @abc.abstractmethod
-    def get(self, path: str, withResultJsonKey: bool = True) -> list[dict[str, Any]]:
+    def get(self, path: str) -> list[dict[str, Any]]:
         ...
 
     @abc.abstractmethod
-    def post(
-        self, path: str, data: Any, withResultJsonKey: bool = True
-    ) -> dict[str, Any]:
+    def post(self, path: str, data: Any) -> dict[str, Any]:
         ...
 
     @staticmethod
