@@ -124,13 +124,14 @@ class CxList:
             items=data["items"],
         )
 
-    def constructDataCSV(self) -> str:
+    def constructDataCSV(self, headers: bool = False) -> str:
         """
         Constructs a CSV of the data items of the CxList for reupload to the tenant.
         """
         data: list[list[str]] = []
-        headings = list(self.items[0].keys())
-        data.append(headings)
+        if headers:
+            headings = list(self.items[0].keys())
+            data.append(headings)
 
         for item in self.items:
             thisRow = list(item.values())
