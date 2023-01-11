@@ -99,6 +99,6 @@ class CxUser(dict[str, Any]):
             skills=[Skill.from_json(skill) for skill in data["skills"]],
             state=data["state"],
             status=PlatformStatus(data["status"]),
-            updated=datetime.fromisoformat(data["updated"]),
+            updated=datetime.fromisoformat(data["updated"][:-1]),
             updatedBy=data["updatedBy"],
         )
