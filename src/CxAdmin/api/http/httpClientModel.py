@@ -8,7 +8,7 @@ class HTTPClientModel:
         ...
 
     @abc.abstractmethod
-    def get(self, path: str) -> list[dict[str, Any]]:
+    def get(self, path: str) -> str:
         ...
 
     @abc.abstractmethod

@@ -1,20 +1,27 @@
 from typing import Any
 from CxAdmin.api.cxItem import CxItem
 from CxAdmin.objects.cxList import CxList
+import json
 
 
 class CxLists(CxItem):
     def getAllLists(self) -> list[CxList]:
-        listsJson: list[dict[str, str]] = self._httpClient.get(self._path)
-        lists = [CxList.from_json(thisListJson) for thisListJson in listsJson]
+        listsJson: str = self._httpClient.get(self._path)
+        lists = [
+            CxList.from_json(json.loads(thisListJson)["result"])
+            for thisListJson in listsJson
+        ]
         return lists
 
     def getList(self, listId: str) -> CxList:
-        listJson: dict[str, Any] = self._httpClient.get(f"{self._path}/{listId}")  # type: ignore
-        listItem = CxList.from_json(listJson)
+        listJson: str = self._httpClient.get(f"{self._path}/{listId}")
+        listItem = CxList.from_json(json.loads(listJson)["result"])
         return listItem
 
     def uploadListCSV(self, id: str, csv: str) -> dict[str, Any]:
+        raise NotImplementedError(
+            r"Not yet implemented. See https://api-docs.cxengage.net/Rest/Default.htm#Lists/bulk_Import_Lists.htm%3FTocPath%3DConfiguration%7CManaging%2520Lists%7CLists%7C_____6"
+        )
         listJson: dict[str, Any] = self._httpClient.post(
             f"{self._path}/{id}/upload", csv
         )

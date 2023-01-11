@@ -16,7 +16,7 @@ class HTTPClient(HTTPClientModel):
             "Content-Type": "application/json",
         }
 
-    def get(self, path: str) -> list[dict[str, Any]]:
+    def get(self, path: str) -> str:
         response = HTTPClient._get(
             path=self.__basePath + path,
             headers=self.__headers,
