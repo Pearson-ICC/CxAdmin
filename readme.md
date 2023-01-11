@@ -56,8 +56,6 @@ cx = cxadmin.Cx.fromConfigFile("config.json")
 cx.queues.getQueues()
 ```
 
-*More to be added here*
-
 ### Lists
 
 #### Get all lists
@@ -70,11 +68,6 @@ cx.lists.getAllLists()
 cx.lists.getListByID(listID)
 ```
 
-#### Upload a list
-```python
-cx.lists.uploadList(cxList)
-```
-
 #### Get list as CSV
 ```python
 cx.lists.getListCSV(listID)
@@ -82,7 +75,15 @@ cx.lists.getListCSV(listID)
 
 ### Statistics
 
-*To be implemented*
+```python
+cx.statistics.getInteractions(between: (datetime, datetime))
+```
+
+### Users
+
+```python
+cx.users.getAllUsers()
+```
 
 ### Environment
 

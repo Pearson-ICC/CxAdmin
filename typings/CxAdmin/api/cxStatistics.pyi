@@ -7,7 +7,6 @@ from typing import Any
 from CxAdmin.api.cxItem import CxItem
 
 class CxStatistics(CxItem):
-    def getRealtimeStatistics(self) -> Any: ...
     def getInteractions(
         self, between: tuple[datetime, datetime]
     ) -> list[dict[str, Any]]: ...
