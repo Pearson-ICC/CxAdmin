@@ -20,7 +20,7 @@ class CxUser(dict[str, Any]):
     id: str
     lastName: str
     personalTelephone: Optional[str]
-    platformStatus: PlatformStatus
+    tenantStatus: PlatformStatus
     roleName: str
     skills: list[Skill]
     state: str
@@ -45,7 +45,7 @@ class CxUser(dict[str, Any]):
         id: str,
         lastName: str,
         personalTelephone: Optional[str],
-        platformStatus: PlatformStatus,
+        tenantStatus: PlatformStatus,
         roleName: str,
         skills: list[Skill],
         state: str,
@@ -68,7 +68,7 @@ class CxUser(dict[str, Any]):
         self.id = id
         self.lastName = lastName
         self.personalTelephone = personalTelephone
-        self.platformStatus = platformStatus
+        self.tenantStatus = tenantStatus
         self.roleName = roleName
         self.skills = skills
         self.state = state
@@ -94,7 +94,7 @@ class CxUser(dict[str, Any]):
             id=data["id"],
             lastName=data["lastName"],
             personalTelephone=data["personalTelephone"],
-            platformStatus=PlatformStatus(data["platformStatus"]),
+            tenantStatus=PlatformStatus(data["platformStatus"]),
             roleName=data["roleName"],
             skills=[Skill.from_json(skill) for skill in data["skills"]],
             state=data["state"],
