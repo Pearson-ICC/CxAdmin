@@ -49,7 +49,7 @@ class Cx:
     @staticmethod
     def fromConfigFile(configFilePath: str) -> "Cx":
         config: dict[str, str]
-        with open(configFilePath, "r") as file:
+        with open(file=configFilePath, mode="r") as file:
             config = json.load(file)
 
         return Cx(
