@@ -6,15 +6,14 @@ import json
 
 class CxLists(CxItem):
     def getAllLists(self) -> list[CxList]:
-        listsJson: str = self._httpClient.get(self._path)
-        lists = [
-            CxList.from_json(json.loads(thisListJson)["result"])
-            for thisListJson in listsJson
+        listsJson: list[dict[str, Any]] = self._httpClient.get(self._path).json()[
+            "result"
         ]
+        lists = [CxList.from_json(thisListJson) for thisListJson in listsJson]
         return lists
 
     def getList(self, listId: str) -> CxList:
-        listJson: str = self._httpClient.get(f"{self._path}/{listId}")
+        listJson: str = self._httpClient.get(f"{self._path}/{listId}").json()
         listItem = CxList.from_json(json.loads(listJson)["result"])
         return listItem
 

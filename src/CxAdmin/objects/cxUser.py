@@ -6,12 +6,12 @@ from CxAdmin.objects.skill import Skill
 
 class CxUser(dict[str, Any]):
     activeExtension: dict[str, str]
-    additionalRoleIds: str
-    ailasPlatformUserId: str
+    additionalRoleIds: Optional[str]
+    aliasPlatformUserId: Optional[str]
     clientLogLevel: Optional[str]
     created: datetime
     createdBy: str
-    defaultTenant: str
+    defaultTenant: Optional[str]
     email: str
     extensions: list[dict[str, Any]]
     externalId: Optional[str]
@@ -31,12 +31,12 @@ class CxUser(dict[str, Any]):
     def __init__(
         self,
         activeExtension: dict[str, str],
-        additionalRoleIds: str,
-        ailasPlatformUserId: str,
+        additionalRoleIds: Optional[str],
+        aliasPlatformUserId: Optional[str],
         clientLogLevel: Optional[str],
         created: datetime,
         createdBy: str,
-        defaultTenant: str,
+        defaultTenant: Optional[str],
         email: str,
         extensions: list[dict[str, Any]],
         externalId: Optional[str],
@@ -55,7 +55,7 @@ class CxUser(dict[str, Any]):
     ):
         self.activeExtension = activeExtension
         self.additionalRoleIds = additionalRoleIds
-        self.ailasPlatformUserId = ailasPlatformUserId
+        self.aliasPlatformUserId = aliasPlatformUserId
         self.clientLogLevel = clientLogLevel
         self.created = created
         self.createdBy = createdBy
@@ -80,12 +80,12 @@ class CxUser(dict[str, Any]):
     def from_json(data: dict[str, Any]) -> "CxUser":
         return CxUser(
             activeExtension=data["activeExtension"],
-            additionalRoleIds=data["additionalRoleIds"],
-            ailasPlatformUserId=data["ailasPlatformUserId"],
+            additionalRoleIds=data.get("additionalRoleIds"),
+            aliasPlatformUserId=data.get("aliasPlatformUserId"),
             clientLogLevel=data["clientLogLevel"],
-            created=datetime.fromisoformat(data["created"]),
+            created=datetime.fromisoformat(data["created"][:-1]),
             createdBy=data["createdBy"],
-            defaultTenant=data["defaultTenant"],
+            defaultTenant=data.get("defaultTenant"),
             email=data["email"],
             extensions=data["extensions"],
             externalId=data["externalId"],

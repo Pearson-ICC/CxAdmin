@@ -6,8 +6,4 @@ from CxAdmin.api.cxItem import CxItem
 from CxAdmin.objects.cxUser import CxUser
 
 class CxUsers(CxItem):
-    def getAllUsers(self) -> list[CxUser]:
-        ...
-    
-
-
+    def getAllUsers(self) -> list[CxUser]: ...

@@ -1,5 +1,6 @@
 import abc
 from typing import Any
+from requests import Response
 
 
 class HTTPClientModel:
@@ -8,11 +9,11 @@ class HTTPClientModel:
         ...
 
     @abc.abstractmethod
-    def get(self, path: str) -> str:
+    def get(self, path: str) -> Response:
         ...
 
     @abc.abstractmethod
-    def post(self, path: str, data: Any) -> dict[str, Any]:
+    def post(self, path: str, data: Any) -> Response:
         ...
 
     @staticmethod

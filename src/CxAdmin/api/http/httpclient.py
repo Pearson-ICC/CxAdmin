@@ -1,6 +1,6 @@
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from typing import Any, Optional
-from requests import get, post
+from requests import get, post, Response
 
 
 class HTTPClient(HTTPClientModel):
@@ -16,14 +16,14 @@ class HTTPClient(HTTPClientModel):
             "Content-Type": "application/json",
         }
 
-    def get(self, path: str) -> str:
+    def get(self, path: str) -> Response:
         response = HTTPClient._get(
             path=self.__basePath + path,
             headers=self.__headers,
         )
         return response
 
-    def post(self, path: str, data: Any) -> dict[str, Any]:
+    def post(self, path: str, data: Any) -> Response:
         response = HTTPClient._post(
             path=self.__basePath + path,
             headers=self.__headers,
@@ -32,23 +32,18 @@ class HTTPClient(HTTPClientModel):
         return response
 
     @staticmethod
-    def _get(path: str, headers: dict[str, Any]) -> Any:
+    def _get(path: str, headers: dict[str, Any]) -> Response:
         response = get(path, headers=headers)
-        return response.text
-
-    @staticmethod
-    def _get_json(path: str, headers: dict[str, Any]) -> dict[str, Any]:
-        response = get(url=path, headers=headers)
-        return response.json()
+        return response
 
     @staticmethod
     def _post(
         path: str,
         body: Optional[dict[str, Any]],
         headers: Optional[dict[str, Any]] = None,
-    ) -> dict[str, Any]:
+    ) -> Response:
         response = post(url=path, json=body, headers=headers)
-        return response.json()
+        return response
 
     @staticmethod
     def getToken(basePath: str, apiKey: str, apiSecret: str, tenantID: str) -> str:
@@ -63,5 +58,5 @@ class HTTPClient(HTTPClientModel):
             body=body,
         )
 
-        token: str = response["token"]
+        token: str = response.json()["token"]
         return token
