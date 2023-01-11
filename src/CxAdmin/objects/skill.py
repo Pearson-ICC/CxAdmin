@@ -26,5 +26,5 @@ class Skill:
             id=data["id"],
             name=data["name"],
             proficiency=data["proficiency"],
-            added=datetime.fromisoformat(data["added"]),
+            added=datetime.fromisoformat(data["added"][:-1]),
         )
