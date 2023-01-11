@@ -24,7 +24,7 @@ class CxUser(dict[str, Any]):
     roleName: str
     skills: list[Skill]
     state: str
-    status: PlatformStatus
+    platformStatus: PlatformStatus
     updated: datetime
     updatedBy: str
 
@@ -49,7 +49,7 @@ class CxUser(dict[str, Any]):
         roleName: str,
         skills: list[Skill],
         state: str,
-        status: PlatformStatus,
+        platformStatus: PlatformStatus,
         updated: datetime,
         updatedBy: str,
     ):
@@ -72,7 +72,7 @@ class CxUser(dict[str, Any]):
         self.roleName = roleName
         self.skills = skills
         self.state = state
-        self.status = status
+        self.platformStatus = platformStatus
         self.updated = updated
         self.updatedBy = updatedBy
 
@@ -98,7 +98,7 @@ class CxUser(dict[str, Any]):
             roleName=data["roleName"],
             skills=[Skill.from_json(skill) for skill in data["skills"]],
             state=data["state"],
-            status=PlatformStatus(data["status"]),
+            platformStatus=PlatformStatus(data["status"]),
             updated=datetime.fromisoformat(data["updated"][:-1]),
             updatedBy=data["updatedBy"],
         )
