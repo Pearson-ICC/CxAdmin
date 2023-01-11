@@ -1,3 +1,5 @@
+![](readme/logo.jpg)
+
 # CxAdmin
 
 CxAdmin is a Python API client for the CxEngage API. It is a work in progress and is not yet complete.
