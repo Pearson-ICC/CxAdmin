@@ -13,12 +13,14 @@ class CxStatistics(CxItem):
         params: str = f"?start={between[0]}&end={between[1]}&limit=1000"
         responsesJsons: list[dict[str, Any]] = []
         response = self._httpClient.get(f"{self._path}/interactions{params}")
-        responseResults = response.json()["results"]["interactions"]
+        responseJson = response.json()
+        responseResults = responseJson["results"]
         responsesJsons.extend(responseResults)
-        while len(responseResults) >= 1000:
+        while len(responsesJsons) < responseJson["total"]:
             params = f"?start={between[0]}&end={between[1]}&limit=1000&offset={len(responsesJsons)}"
             response = self._httpClient.get(f"{self._path}/interactions{params}")
-            responseResults = response.json()
-            responsesJsons.extend(responseResults["results"])
+            responseJson = response.json()
+            responseResults = responseJson["results"]
+            responsesJsons.extend(responseResults)
 
         return responsesJsons
