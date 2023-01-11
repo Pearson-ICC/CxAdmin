@@ -12,6 +12,7 @@ src/CxAdmin/api/cxItem.py
 src/CxAdmin/api/cxLists.py
 src/CxAdmin/api/cxQueues.py
 src/CxAdmin/api/cxStatistics.py
+src/CxAdmin/api/cxUsers.py
 src/CxAdmin/api/http/__init__.py
 src/CxAdmin/api/http/httpClientModel.py
 src/CxAdmin/api/http/httpclient.py
@@ -19,3 +20,6 @@ src/CxAdmin/objects/__init__.py
 src/CxAdmin/objects/cx.py
 src/CxAdmin/objects/cxList.py
 src/CxAdmin/objects/cxQueue.py
+src/CxAdmin/objects/cxUser.py
+src/CxAdmin/objects/platformStatus.py
+src/CxAdmin/objects/skill.py

@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class PlatformStatus(Enum, str):
+class PlatformStatus(Enum):
     pending = "pending"
     accepted = "accepted"
