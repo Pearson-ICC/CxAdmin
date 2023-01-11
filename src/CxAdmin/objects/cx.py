@@ -41,7 +41,7 @@ class Cx:
 
         self.lists = CxLists(self.__httpClient, "/lists")
         self.queues = CxQueues(self.__httpClient, "/queues")
-        self.statistics = CxStatistics(self.__httpClient, "/realtime-statistics")
+        self.statistics = CxStatistics(self.__httpClient, "")
         self.environment = CxEnvironment(self.__httpClient, "")
         self.flows = CxFlows(self.__httpClient, "/flows")
         self.users = CxUsers(self.__httpClient, "/users")
