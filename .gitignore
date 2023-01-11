@@ -8,3 +8,4 @@ Pearson/
 **_internal.json
 **.DS_Store
 dist/
+test.py

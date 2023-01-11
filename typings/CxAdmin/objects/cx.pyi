@@ -7,6 +7,7 @@ from CxAdmin.api.cxQueues import CxQueues
 from CxAdmin.api.cxStatistics import CxStatistics
 from CxAdmin.api.cxEnvironment import CxEnvironment
 from CxAdmin.api.cxFlows import CxFlows
+from CxAdmin.api.cxUsers import CxUsers
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 
 class Cx:
@@ -21,12 +22,10 @@ class Cx:
     statistics: CxStatistics
     environment: CxEnvironment
     flows: CxFlows
-    def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str) -> None:
-        ...
-    
+    users: CxUsers
+
+    def __init__(
+        self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str
+    ) -> None: ...
     @staticmethod
-    def fromConfigFile(configFilePath: str) -> Cx:
-        ...
-    
-
-
+    def fromConfigFile(configFilePath: str) -> Cx: ...
