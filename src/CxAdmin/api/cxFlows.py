@@ -8,3 +8,6 @@ class CxFlows(CxItem):
 
     def getFlow(self, flowId: str) -> Any:
         raise NotImplementedError()
+
+    def get(self) -> Any:
+        raise NotImplementedError()

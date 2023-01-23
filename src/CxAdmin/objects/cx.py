@@ -4,7 +4,6 @@ from CxAdmin.api.cxStatistics import CxStatistics
 from CxAdmin.api.cxEnvironment import CxEnvironment
 from CxAdmin.api.cxFlows import CxFlows
 from CxAdmin.api.cxUsers import CxUsers
-from CxAdmin.api.cxItem import CxCollection
 
 from CxAdmin.api.http.httpclient import HTTPClient
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
@@ -21,12 +20,12 @@ class Cx:
 
     __httpClient: HTTPClientModel
 
-    environment: CxCollection[CxEnvironment]
-    flows: CxCollection[CxFlows]
-    lists: CxCollection[CxLists]
-    queues: CxCollection[CxQueues]
-    statistics: CxCollection[CxStatistics]
-    users: CxCollection[CxUsers]
+    environment: CxEnvironment
+    flows: CxFlows
+    lists: CxLists
+    queues: CxQueues
+    statistics: CxStatistics
+    users: CxUsers
 
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
         self.__BASE_URL = baseURL  # type: ignore
@@ -40,12 +39,12 @@ class Cx:
             token=self.__getToken(),
         )
 
-        self.environment = CxCollection(self.__httpClient, "")
-        self.flows = CxCollection(self.__httpClient, "/flows")
-        self.lists = CxCollection(self.__httpClient, "/lists")
-        self.queues = CxCollection(self.__httpClient, "/queues")
-        self.statistics = CxCollection(self.__httpClient, "")
-        self.users = CxCollection(self.__httpClient, "/users")
+        self.environment = CxEnvironment(self.__httpClient, "")
+        self.flows = CxFlows(self.__httpClient, "/flows")
+        self.lists = CxLists(self.__httpClient, "/lists")
+        self.queues = CxQueues(self.__httpClient, "/queues")
+        self.statistics = CxStatistics(self.__httpClient, "")
+        self.users = CxUsers(self.__httpClient, "/users")
 
     @staticmethod
     def fromConfigFile(configFilePath: str) -> "Cx":

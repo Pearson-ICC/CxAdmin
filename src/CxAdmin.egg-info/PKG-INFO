@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: CxAdmin
-Version: 1.0.42
+Version: 1.0.46
 Summary: Python SDK for interacting with the CxEngage API
 Home-page: https://github.com/ntflix/cxadmin
 Author: Felix Weber
@@ -9,6 +9,8 @@ Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
+
+![](readme/logo.jpg)
 
 # CxAdmin
 
@@ -66,8 +68,6 @@ cx = cxadmin.Cx.fromConfigFile("config.json")
 cx.queues.getQueues()
 ```
 
-*More to be added here*
-
 ### Lists
 
 #### Get all lists
@@ -80,11 +80,6 @@ cx.lists.getAllLists()
 cx.lists.getListByID(listID)
 ```
 
-#### Upload a list
-```python
-cx.lists.uploadList(cxList)
-```
-
 #### Get list as CSV
 ```python
 cx.lists.getListCSV(listID)
@@ -92,7 +87,15 @@ cx.lists.getListCSV(listID)
 
 ### Statistics
 
-*To be implemented*
+```python
+cx.statistics.getInteractions(between: (datetime, datetime))
+```
+
+### Users
+
+```python
+cx.users.getAllUsers()
+```
 
 ### Environment
 

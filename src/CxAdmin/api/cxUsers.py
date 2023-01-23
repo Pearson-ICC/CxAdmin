@@ -10,3 +10,6 @@ class CxUsers(CxItem):
         ]
         users = [CxUser.from_json(userJson) for userJson in usersJson]
         return users
+
+    def get(self) -> Any:
+        raise NotImplementedError()

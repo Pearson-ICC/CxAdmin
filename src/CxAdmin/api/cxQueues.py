@@ -10,3 +10,6 @@ class CxQueues(CxItem):
         ]
         queues = [CxQueue.from_json(queueJson) for queueJson in queuesJson]
         return queues
+
+    def get(self) -> Any:
+        raise NotImplementedError()

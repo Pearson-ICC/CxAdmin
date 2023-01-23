@@ -8,3 +8,6 @@ class CxEnvironment(CxItem):
 
     def getRegions(self) -> Any:
         raise NotImplementedError()
+
+    def get(self) -> Any:
+        return self._httpClient.get(self._path).json()

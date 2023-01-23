@@ -1,4 +1,5 @@
 pyproject.toml
+readme.md
 setup.cfg
 src/CxAdmin/__init__.py
 src/CxAdmin.egg-info/PKG-INFO

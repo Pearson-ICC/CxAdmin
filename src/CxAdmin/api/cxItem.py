@@ -1,6 +1,6 @@
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from abc import abstractmethod
-from typing import Protocol, TypeVar, Generic, Any
+from typing import Protocol, Any
 
 
 class CxItem(Protocol):
@@ -14,16 +14,3 @@ class CxItem(Protocol):
     @abstractmethod
     def get(self) -> list[Any]:
         raise NotImplementedError()
-
-
-T = TypeVar("T", bound=CxItem)
-
-
-class CxCollection(Generic[T]):
-    @abstractmethod
-    def get(self) -> list[T]:
-        pass
-
-    def __init__(self, httpClient: HTTPClientModel, path: str):
-        self._httpClient = httpClient
-        self._path = path

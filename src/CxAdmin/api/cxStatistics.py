@@ -21,3 +21,6 @@ class CxStatistics(CxItem):
             responsesJsons.extend(responseResults)
 
         return responsesJsons
+
+    def get(self) -> Any:
+        raise NotImplementedError()
