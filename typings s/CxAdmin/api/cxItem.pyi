@@ -1,9 +1,8 @@
-import abc
-from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
+from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from abc import abstractmethod
-from typing import Any, TypeVar, Generic
+from typing import TypeVar, Generic, Any
 
-class CxItem(metaclass=abc.ABCMeta):
+class CxItem:
     _httpClient: HTTPClientModel
     _path: str
 
