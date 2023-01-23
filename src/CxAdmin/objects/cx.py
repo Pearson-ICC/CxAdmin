@@ -4,6 +4,7 @@ from CxAdmin.api.cxStatistics import CxStatistics
 from CxAdmin.api.cxEnvironment import CxEnvironment
 from CxAdmin.api.cxFlows import CxFlows
 from CxAdmin.api.cxUsers import CxUsers
+from CxAdmin.api.cxGroups import CxGroups
 
 from CxAdmin.api.http.httpclient import HTTPClient
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
@@ -26,6 +27,7 @@ class Cx:
     queues: CxQueues
     statistics: CxStatistics
     users: CxUsers
+    groups: CxGroups
 
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
         self.__BASE_URL = baseURL  # type: ignore
@@ -45,6 +47,7 @@ class Cx:
         self.queues = CxQueues(self.__httpClient, "/queues")
         self.statistics = CxStatistics(self.__httpClient, "")
         self.users = CxUsers(self.__httpClient, "/users")
+        self.groups = CxGroups(self.__httpClient, "/groups")
 
     @staticmethod
     def fromConfigFile(configFilePath: str) -> "Cx":

@@ -74,7 +74,7 @@ class CxList:
     | created | `string` | The date and time, in UTC format, when the list type was created. |
     | updatedBy | `UUID` | The unique identifier of the user who last updated the list. |
     | active | `string` | Whether or not the list is enabled. Valid values are true and false. |
-    | id | `UUID` | The list’s unique identifier. |
+    | id | `UUID` | The list's unique identifier. |
     | shared | `boolean` | Whether or not the list is shared to child tenants of this tenant. Valid values are true and false. |
     | items | `object` | The list items that make up the list, along with their unique identifiers, and (if available) a description of the list item. |
     """
