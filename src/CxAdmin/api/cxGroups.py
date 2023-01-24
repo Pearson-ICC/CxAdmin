@@ -12,4 +12,4 @@ class CxGroups(CxItem):
         return groups
 
     def get(self) -> Any:
-        raise NotImplementedError()
+        return self.getGroups()

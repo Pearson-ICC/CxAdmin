@@ -49,7 +49,7 @@ class CxGroup:
             tenantId=data["tenantId"],
             name=data["name"],
             owner=data["owner"],
-            status=data["status"],
+            status=data["active"],  # Skylight's API docs are wrong, key is "active"
             description=data["description"],
             created=data["created"],
             createdBy=data["createdBy"],
