@@ -1,5 +1,5 @@
+from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 from abc import abstractmethod
-from src.CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 from typing import Any, Protocol
 
 class CxItem(Protocol):

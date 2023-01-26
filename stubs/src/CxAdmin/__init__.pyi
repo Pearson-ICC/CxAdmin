@@ -1,3 +1,3 @@
-from src.CxAdmin.__cx import Cx as Cx
+from CxAdmin.__cx import Cx
 
 Cx = Cx

@@ -1,6 +1,13 @@
-from src.CxAdmin.api import CxEnvironment as CxEnvironment, CxFlows as CxFlows, CxGroups as CxGroups, CxLists as CxLists, CxQueues as CxQueues, CxStatistics as CxStatistics, CxUsers as CxUsers
-from src.CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
-from src.CxAdmin.api.http.httpclient import HTTPClient as HTTPClient
+from CxAdmin.api import (
+    CxEnvironment,
+    CxFlows,
+    CxGroups,
+    CxLists,
+    CxQueues,
+    CxStatistics,
+    CxUsers,
+)
+from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 
 class Cx:
     environment: CxEnvironment
@@ -10,6 +17,8 @@ class Cx:
     statistics: CxStatistics
     users: CxUsers
     groups: CxGroups
-    def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str) -> None: ...
+    def __init__(
+        self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str
+    ) -> None: ...
     @staticmethod
     def fromConfigFile(configFilePath: str) -> Cx: ...

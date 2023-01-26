@@ -1,11 +1,11 @@
-from src.CxAdmin.api.cxEnvironment import CxEnvironment
-from src.CxAdmin.api.cxFlows import CxFlows
-from src.CxAdmin.api.cxGroups import CxGroups
-from src.CxAdmin.api.cxItem import CxItem
-from src.CxAdmin.api.cxLists import CxLists
-from src.CxAdmin.api.cxQueues import CxQueues
-from src.CxAdmin.api.cxStatistics import CxStatistics
-from src.CxAdmin.api.cxUsers import CxUsers
+from CxAdmin.api.cxEnvironment import CxEnvironment
+from CxAdmin.api.cxFlows import CxFlows
+from CxAdmin.api.cxGroups import CxGroups
+from CxAdmin.api.cxItem import CxItem
+from CxAdmin.api.cxLists import CxLists
+from CxAdmin.api.cxQueues import CxQueues
+from CxAdmin.api.cxStatistics import CxStatistics
+from CxAdmin.api.cxUsers import CxUsers
 
 CxEnvironment = CxEnvironment
 CxFlows = CxFlows

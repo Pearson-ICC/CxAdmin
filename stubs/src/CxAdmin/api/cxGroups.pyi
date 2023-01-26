@@ -1,5 +1,5 @@
-from src.CxAdmin.api.cxItem import CxItem as CxItem
-from src.CxAdmin.objects import CxGroup as CxGroup
+from CxAdmin.api.cxItem import CxItem
+from CxAdmin.objects import CxGroup
 from typing import Any
 
 class CxGroups(CxItem):

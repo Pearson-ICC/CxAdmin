@@ -1,5 +1,5 @@
+from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from requests import Response as Response
-from src.CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 from typing import Any
 
 class HTTPClient(HTTPClientModel):

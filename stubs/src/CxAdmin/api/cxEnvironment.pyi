@@ -1,4 +1,4 @@
-from src.CxAdmin.api.cxItem import CxItem as CxItem
+from CxAdmin.api.cxItem import CxItem
 from typing import Any
 
 class CxEnvironment(CxItem):

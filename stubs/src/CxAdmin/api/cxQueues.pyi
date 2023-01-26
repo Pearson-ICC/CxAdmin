@@ -1,5 +1,5 @@
-from src.CxAdmin.api.cxItem import CxItem as CxItem
-from src.CxAdmin.objects import CxQueue as CxQueue
+from CxAdmin.api.cxItem import CxItem
+from CxAdmin.objects import CxQueue
 from typing import Any
 
 class CxQueues(CxItem):

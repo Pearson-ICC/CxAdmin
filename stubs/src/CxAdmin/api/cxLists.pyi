@@ -1,5 +1,5 @@
-from src.CxAdmin.api.cxItem import CxItem as CxItem
-from src.CxAdmin.objects import CxList as CxList
+from CxAdmin.api.cxItem import CxItem
+from CxAdmin.objects import CxList
 from typing import Any
 
 class CxLists(CxItem):

@@ -1,9 +1,9 @@
-from src.CxAdmin.objects.__cxGroup import CxGroup as CxGroup
-from src.CxAdmin.objects.__cxList import CxList as CxList
-from src.CxAdmin.objects.__cxQueue import CxQueue as CxQueue
-from src.CxAdmin.objects.__cxUser import CxUser as CxUser
-from src.CxAdmin.objects.__platformStatus import PlatformStatus as PlatformStatus
-from src.CxAdmin.objects.__skill import Skill as Skill
+from CxAdmin.objects.__cxGroup import CxGroup
+from CxAdmin.objects.__cxList import CxList
+from CxAdmin.objects.__cxQueue import CxQueue
+from CxAdmin.objects.__cxUser import CxUser
+from CxAdmin.objects.__platformStatus import PlatformStatus
+from CxAdmin.objects.__skill import Skill
 
 CxGroup = CxGroup
 CxList = CxList

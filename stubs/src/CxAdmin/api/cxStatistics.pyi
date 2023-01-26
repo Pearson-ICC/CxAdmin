@@ -1,5 +1,5 @@
+from CxAdmin.api.cxItem import CxItem
 from datetime import datetime
-from src.CxAdmin.api.cxItem import CxItem as CxItem
 from typing import Any
 
 class CxStatistics(CxItem):

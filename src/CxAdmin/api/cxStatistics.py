@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Any
-from src.CxAdmin.api.cxItem import CxItem
+from CxAdmin.api.cxItem import CxItem
 
 
 class CxStatistics(CxItem):
