@@ -5,7 +5,7 @@ from requests import Response
 
 class HTTPClientModel:
     @abc.abstractmethod
-    def __init__(self, basePath: str, token: str):
+    def __init__(self, basePath: str, token: str) -> None:
         ...
 
     @abc.abstractmethod

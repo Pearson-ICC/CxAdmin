@@ -1,8 +1,8 @@
 pyproject.toml
 readme.md
 setup.cfg
+src/CxAdmin/__cx.py
 src/CxAdmin/__init__.py
-src/CxAdmin/cx.py
 src/CxAdmin.egg-info/PKG-INFO
 src/CxAdmin.egg-info/SOURCES.txt
 src/CxAdmin.egg-info/dependency_links.txt
@@ -20,10 +20,10 @@ src/CxAdmin/api/cxUsers.py
 src/CxAdmin/api/http/__init__.py
 src/CxAdmin/api/http/httpClientModel.py
 src/CxAdmin/api/http/httpclient.py
+src/CxAdmin/objects/__cxGroup.py
+src/CxAdmin/objects/__cxList.py
+src/CxAdmin/objects/__cxQueue.py
+src/CxAdmin/objects/__cxUser.py
 src/CxAdmin/objects/__init__.py
-src/CxAdmin/objects/cxGroup.py
-src/CxAdmin/objects/cxList.py
-src/CxAdmin/objects/cxQueue.py
-src/CxAdmin/objects/cxUser.py
-src/CxAdmin/objects/platformStatus.py
-src/CxAdmin/objects/skill.py
+src/CxAdmin/objects/__platformStatus.py
+src/CxAdmin/objects/__skill.py
