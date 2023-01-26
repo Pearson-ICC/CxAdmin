@@ -1,6 +1,6 @@
 from typing import Any
 from CxAdmin.api.cxItem import CxItem
-from CxAdmin.objects import CxList
+from CxAdmin.objects.__cxList import CxList
 import json
 
 

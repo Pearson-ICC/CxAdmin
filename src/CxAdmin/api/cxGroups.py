@@ -1,6 +1,6 @@
 from typing import Any
 from CxAdmin.api.cxItem import CxItem
-from CxAdmin.objects import CxGroup
+from CxAdmin.objects.__cxGroup import CxGroup
 
 
 class CxGroups(CxItem):

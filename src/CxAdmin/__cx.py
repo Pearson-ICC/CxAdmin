@@ -1,12 +1,10 @@
-from CxAdmin.api import (
-    CxLists,
-    CxQueues,
-    CxStatistics,
-    CxEnvironment,
-    CxFlows,
-    CxUsers,
-    CxGroups,
-)
+from CxAdmin.api.cxLists import CxLists
+from CxAdmin.api.cxQueues import CxQueues
+from CxAdmin.api.cxStatistics import CxStatistics
+from CxAdmin.api.cxEnvironment import CxEnvironment
+from CxAdmin.api.cxFlows import CxFlows
+from CxAdmin.api.cxUsers import CxUsers
+from CxAdmin.api.cxGroups import CxGroups
 
 from CxAdmin.api.http.httpclient import HTTPClient
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
