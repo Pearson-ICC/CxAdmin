@@ -1,7 +1,3 @@
-from CxAdmin.objects.cx import Cx
-from CxAdmin.objects.cxList import CxList
-from CxAdmin.objects.cxQueue import CxQueue
+from src.CxAdmin.__cx import Cx
 
 Cx = Cx
-CxList = CxList
-CxQueue = CxQueue

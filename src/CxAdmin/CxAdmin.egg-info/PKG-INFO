@@ -30,7 +30,7 @@ This API is designed to be easily expandable. If you would like to add functiona
 ### Set up API client
 
 ```python
-from CxAdmin import cx as cxadmin
+from src.CxAdmin import cx as cxadmin
 
 cx = cxadmin.Cx(
     baseURL="your_base_url", # https://eu-west-1-prod-api.cxengage.net for EU, https://api.cxengage.net for US
@@ -43,7 +43,7 @@ cx = cxadmin.Cx(
 or
 
 ```python
-from CxAdmin import cx as cxadmin
+from src.CxAdmin import cx as cxadmin
 
 cx = cxadmin.Cx.fromConfigFile("config.json")
 ```

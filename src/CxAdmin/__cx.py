@@ -1,13 +1,13 @@
-from CxAdmin.api.cxLists import CxLists
-from CxAdmin.api.cxQueues import CxQueues
-from CxAdmin.api.cxStatistics import CxStatistics
-from CxAdmin.api.cxEnvironment import CxEnvironment
-from CxAdmin.api.cxFlows import CxFlows
-from CxAdmin.api.cxUsers import CxUsers
-from CxAdmin.api.cxGroups import CxGroups
+from src.CxAdmin.api import CxLists
+from src.CxAdmin.api import CxQueues
+from src.CxAdmin.api import CxStatistics
+from src.CxAdmin.api import CxEnvironment
+from src.CxAdmin.api import CxFlows
+from src.CxAdmin.api import CxUsers
+from src.CxAdmin.api import CxGroups
 
-from CxAdmin.api.http.httpclient import HTTPClient
-from CxAdmin.api.http.httpClientModel import HTTPClientModel
+from src.CxAdmin.api.http.httpclient import HTTPClient
+from src.CxAdmin.api.http.httpClientModel import HTTPClientModel
 
 import json
 

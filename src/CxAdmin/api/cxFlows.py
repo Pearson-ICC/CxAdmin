@@ -1,5 +1,5 @@
 from typing import Any
-from CxAdmin.api.cxItem import CxItem
+from src.CxAdmin.api import CxItem
 
 
 class CxFlows(CxItem):

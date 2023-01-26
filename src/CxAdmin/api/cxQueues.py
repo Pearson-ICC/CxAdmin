@@ -1,6 +1,6 @@
 from typing import Any
-from CxAdmin.api.cxItem import CxItem
-from CxAdmin.objects.cxQueue import CxQueue
+from src.CxAdmin.api import CxItem
+from src.CxAdmin.objects import CxQueue
 
 
 class CxQueues(CxItem):

@@ -1,6 +1,0 @@
-from CxAdmin.api.cxItem import CxItem
-from typing import Any
-
-class CxFlows(CxItem):
-    def getAllFlows(self) -> Any: ...
-    def getFlow(self, flowId: str) -> Any: ...

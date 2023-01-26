@@ -1,4 +1,4 @@
-from CxAdmin.api.http.httpClientModel import HTTPClientModel
+from src.CxAdmin.api.http.httpClientModel import HTTPClientModel
 from abc import abstractmethod
 from typing import Protocol, Any
 

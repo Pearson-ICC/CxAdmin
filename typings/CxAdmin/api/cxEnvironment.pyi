@@ -1,6 +1,0 @@
-from CxAdmin.api.cxItem import CxItem
-from typing import Any
-
-class CxEnvironment(CxItem):
-    def getTenant(self) -> Any: ...
-    def getRegions(self) -> Any: ...

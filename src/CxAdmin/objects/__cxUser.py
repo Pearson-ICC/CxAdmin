@@ -1,7 +1,7 @@
 from typing import Any, Optional
 from datetime import datetime
-from CxAdmin.objects.platformStatus import PlatformStatus
-from CxAdmin.objects.skill import Skill
+from src.CxAdmin.objects import PlatformStatus
+from src.CxAdmin.objects import Skill
 
 
 class CxUser(dict[str, Any]):
