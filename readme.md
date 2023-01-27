@@ -9,6 +9,9 @@ Together with the way this program is designed, this means you can fetch items f
 
 This API is designed to be easily expandable. If you would like to add functionality, please feel free to submit a pull request.
 
+## To Do
+- [] Any object to CSV
+
 ## Usage – Contents
 * [Set up API client](#set-up-api-client)
 * [Queues](#queues)
