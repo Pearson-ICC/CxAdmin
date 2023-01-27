@@ -12,4 +12,4 @@ class CxUsers(CxItem):
         return users
 
     def get(self) -> Any:
-        raise NotImplementedError()
+        return self.getAllUsers()

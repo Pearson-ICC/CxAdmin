@@ -25,9 +25,10 @@ class Cx:
     flows: CxFlows
     lists: CxLists
     queues: CxQueues
-    statistics: CxStatistics
     users: CxUsers
     groups: CxGroups
+
+    statistics: CxStatistics
 
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
         self.__BASE_URL = baseURL  # type: ignore
@@ -45,9 +46,10 @@ class Cx:
         self.flows = CxFlows(self.__httpClient, "/flows")
         self.lists = CxLists(self.__httpClient, "/lists")
         self.queues = CxQueues(self.__httpClient, "/queues")
-        self.statistics = CxStatistics(self.__httpClient, "")
         self.users = CxUsers(self.__httpClient, "/users")
         self.groups = CxGroups(self.__httpClient, "/groups")
+
+        self.statistics = CxStatistics(self.__httpClient, "")
 
     @staticmethod
     def fromConfigFile(configFilePath: str) -> "Cx":

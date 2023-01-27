@@ -1,9 +1,16 @@
 from typing import Any
-from CxAdmin.api.cxItem import CxItem
+from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from CxAdmin.objects.__cxQueue import CxQueue
 
 
-class CxQueues(CxItem):
+class CxQueues:
+    _httpClient: HTTPClientModel
+    _path: str = ""
+
+    def __init__(self, httpClient: HTTPClientModel, path: str):
+        self._httpClient = httpClient
+        self._path = path
+
     def getQueues(self) -> list[CxQueue]:
         queuesJson: list[dict[str, Any]] = self._httpClient.get(self._path).json()[
             "result"
@@ -12,4 +19,4 @@ class CxQueues(CxItem):
         return queues
 
     def get(self) -> Any:
-        raise NotImplementedError()
+        return self.getQueues()

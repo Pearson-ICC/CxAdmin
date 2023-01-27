@@ -1,5 +1,5 @@
 import src.CxAdmin
-from CxAdmin.objects import PlatformStatus
+from CxAdmin.objects.__platformStatus import PlatformStatus
 
 cx = src.CxAdmin.Cx.fromConfigFile("config.prod.json")
 users = cx.users.getAllUsers()

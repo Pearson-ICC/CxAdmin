@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Any
-from CxAdmin.api.cxItem import CxItem
+from src.CxAdmin.api.cxItem import CxItem
 
 
 class CxStatistics(CxItem):
@@ -23,4 +23,7 @@ class CxStatistics(CxItem):
         return responsesJsons
 
     def get(self) -> Any:
-        raise NotImplementedError()
+        statsJson: list[dict[str, Any]] = self._httpClient.get(
+            f"{self._path}/statistics"
+        ).json()["result"]
+        return statsJson
