@@ -18,5 +18,10 @@ class CxQueues:
         queues = [CxQueue.from_json(queueJson) for queueJson in queuesJson]
         return queues
 
-    def get(self) -> Any:
+    def get(self) -> list[CxQueue]:
         return self.getQueues()
+
+    def getActiveQueues(self) -> list[CxQueue]:
+        queues = self.getQueues()
+        activeQueues = [queue for queue in queues if queue.active]
+        return activeQueues

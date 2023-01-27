@@ -26,7 +26,7 @@ class CxQueue:
         updatedBy: str,
         created: str,
         createdBy: str,
-        active: str,
+        active: bool,
         activeVersion: str,
         id: str,
     ):
