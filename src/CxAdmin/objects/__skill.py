@@ -28,3 +28,11 @@ class Skill:
             proficiency=data["proficiency"],
             added=datetime.fromisoformat(data["added"][:-1]),
         )
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "proficiency": self.proficiency,
+            "added": self.added.isoformat(),
+        }

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: CxAdmin
-Version: 1.0.52.1
+Version: 1.0.52.2
 Summary: Python SDK for interacting with the CxEngage API
 Home-page: https://github.com/ntflix/cxadmin
 Author: Felix Weber
@@ -22,20 +22,25 @@ Together with the way this program is designed, this means you can fetch items f
 
 This API is designed to be easily expandable. If you would like to add functionality, please feel free to submit a pull request.
 
+## To Do
+- [] Any object to CSV
+
 ## Usage – Contents
 * [Set up API client](#set-up-api-client)
 * [Queues](#queues)
 * [Lists](#lists)
-* [Statistics](#statistics)
+* [Users](#users)
+* [Groups](#groups)
 * [Environment](#environment)
 * [Flows](#flows)
+* [Statistics](#statistics)
 
 ### Set up API client
 
 ```python
-from CxAdmin import cx as cxadmin
+import CxAdmin
 
-cx = cxadmin.Cx(
+cx = CxAdmin.Cx(
     baseURL="your_base_url", # https://eu-west-1-prod-api.cxengage.net for EU, https://api.cxengage.net for US
     apiKey="your_api_key",
     apiSecret="your_api_secret",
@@ -46,9 +51,9 @@ cx = cxadmin.Cx(
 or
 
 ```python
-from CxAdmin import cx as cxadmin
+import CxAdmin
 
-cx = cxadmin.Cx.fromConfigFile("config.json")
+cx = CxAdmin.Cx.fromConfigFile("config.json")
 ```
 
 > Example config.json
@@ -93,12 +98,6 @@ cx.lists.getList(listId)
 #### Get list as CSV
 ```python
 cx.lists.getListCSV(listId)
-```
-
-### Statistics
-
-```python
-cx.statistics.getInteractions(between: (datetime, datetime))
 ```
 
 ### Users
@@ -153,4 +152,10 @@ cx.flows.getFlows()
 or
 ```python
 cx.flows.get() # same as getFlows()
+```
+
+### Statistics
+
+```python
+cx.statistics.getInteractions(between: (datetime, datetime))
 ```

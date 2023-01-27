@@ -105,3 +105,32 @@ class CxUser(dict[str, Any]):
 
     def __str__(self) -> str:
         return f"CxUser({self.id}, {self.email})"
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "activeExtension": self.activeExtension,
+            "additionalRoleIds": self.additionalRoleIds,
+            "aliasPlatformUserId": self.aliasPlatformUserId,
+            "clientLogLevel": self.clientLogLevel,
+            "created": self.created.isoformat(),
+            "createdBy": self.createdBy,
+            "defaultTenant": self.defaultTenant,
+            "email": self.email,
+            "extensions": self.extensions,
+            "externalId": self.externalId,
+            "firstName": self.firstName,
+            "groups": self.groups,
+            "id": self.id,
+            "lastName": self.lastName,
+            "personalTelephone": self.personalTelephone,
+            "tenantStatus": self.tenantStatus,
+            "roleName": self.roleName,
+            "skills": [skill.to_json() for skill in self.skills],
+            "state": self.state,
+            "platformStatus": self.platformStatus,
+            "updated": self.updated.isoformat(),
+            "updatedBy": self.updatedBy,
+        }
+
+    def __repr__(self) -> str:
+        return self.to_json().__repr__()
