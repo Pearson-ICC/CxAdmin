@@ -13,9 +13,11 @@ This API is designed to be easily expandable. If you would like to add functiona
 * [Set up API client](#set-up-api-client)
 * [Queues](#queues)
 * [Lists](#lists)
-* [Statistics](#statistics)
+* [Users](#users)
+* [Groups](#groups)
 * [Environment](#environment)
 * [Flows](#flows)
+* [Statistics](#statistics)
 
 ### Set up API client
 
@@ -82,12 +84,6 @@ cx.lists.getList(listId)
 cx.lists.getListCSV(listId)
 ```
 
-### Statistics
-
-```python
-cx.statistics.getInteractions(between: (datetime, datetime))
-```
-
 ### Users
 
 #### Get all users
@@ -140,4 +136,10 @@ cx.flows.getFlows()
 or
 ```python
 cx.flows.get() # same as getFlows()
+```
+
+### Statistics
+
+```python
+cx.statistics.getInteractions(between: (datetime, datetime))
 ```
