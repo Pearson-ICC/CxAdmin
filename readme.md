@@ -33,9 +33,9 @@ cx = CxAdmin.Cx(
 or
 
 ```python
-from CxAdmin import cx as cxadmin
+import CxAdmin
 
-cx = cxadmin.Cx.fromConfigFile("config.json")
+cx = CxAdmin.Cx.fromConfigFile("config.json")
 ```
 
 > Example config.json
