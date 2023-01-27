@@ -20,9 +20,9 @@ This API is designed to be easily expandable. If you would like to add functiona
 ### Set up API client
 
 ```python
-from CxAdmin import cx as cxadmin
+import CxAdmin
 
-cx = cxadmin.Cx(
+cx = CxAdmin.Cx(
     baseURL="your_base_url", # https://eu-west-1-prod-api.cxengage.net for EU, https://api.cxengage.net for US
     apiKey="your_api_key",
     apiSecret="your_api_secret",
