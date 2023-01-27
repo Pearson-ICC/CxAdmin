@@ -102,3 +102,6 @@ class CxUser(dict[str, Any]):
             updated=datetime.fromisoformat(data["updated"][:-1]),
             updatedBy=data["updatedBy"],
         )
+
+    def __str__(self) -> str:
+        return f"CxUser({self.id}, {self.email})"

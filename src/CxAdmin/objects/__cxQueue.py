@@ -57,4 +57,7 @@ class CxQueue:
         )
 
     def __str__(self) -> str:
-        return f"CxQueue({self.id}, {self.name}, {self.description})"
+        return f"CxQueue({self.name}, {self.id})"
+
+    def __repr__(self) -> str:
+        return self.__str__()

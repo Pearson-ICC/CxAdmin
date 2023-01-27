@@ -145,4 +145,7 @@ class CxList:
         return csvData
 
     def __str__(self) -> str:
-        return f"CxList({self.id}, {self.name})"
+        return f"CxList({self.name}, {self.id})"
+
+    def __repr__(self) -> str:
+        return self.__str__()

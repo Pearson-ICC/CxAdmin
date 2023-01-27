@@ -59,4 +59,7 @@ class CxGroup:
         )
 
     def __str__(self) -> str:
-        return f"CxGroup({self.id}, {self.name})"
+        return f"CxGroup({self.name}, {self.id})"
+
+    def __repr__(self) -> str:
+        return self.__str__()
