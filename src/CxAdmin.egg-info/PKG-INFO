@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: CxAdmin
-Version: 1.0.52
+Version: 1.0.52.1
 Summary: Python SDK for interacting with the CxEngage API
 Home-page: https://github.com/ntflix/cxadmin
 Author: Felix Weber
@@ -68,22 +68,31 @@ cx = cxadmin.Cx.fromConfigFile("config.json")
 ```python
 cx.queues.getQueues()
 ```
+or
+```python
+cx.queues.get() # same as getQueues()
+```
+
+#### Get active queues
+```python
+cx.queues.getActiveQueues()
+```
 
 ### Lists
 
 #### Get all lists
 ```python
-cx.lists.getAllLists()
+cx.lists.get()
 ```
 
 #### Get list by ID
 ```python
-cx.lists.getListByID(listID)
+cx.lists.getList(listId)
 ```
 
 #### Get list as CSV
 ```python
-cx.lists.getListCSV(listID)
+cx.lists.getListCSV(listId)
 ```
 
 ### Statistics
@@ -94,14 +103,54 @@ cx.statistics.getInteractions(between: (datetime, datetime))
 
 ### Users
 
+#### Get all users
+
 ```python
 cx.users.getAllUsers()
+```
+or
+```python
+cx.users.get() # same as getAllUsers()
+```
+
+### Groups
+
+#### Get all groups
+
+```python
+cx.groups.getGroups()
+```
+or
+```python
+cx.groups.get() # same as getGroups()
 ```
 
 ### Environment
 
-*To be implemented*
+#### Get tenant
+    
+```python
+cx.environment.getTenant()
+```
+or
+```python
+cx.environment.get() # same as getTenant()
+```
+
+#### Get regions
+    
+```python
+cx.environment.getRegions()
+```
 
 ### Flows
 
-*To be implemented*
+#### Get all flows
+
+```python
+cx.flows.getFlows()
+```
+or
+```python
+cx.flows.get() # same as getFlows()
+```
