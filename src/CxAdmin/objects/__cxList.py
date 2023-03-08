@@ -2,7 +2,7 @@ from typing import Any
 from CxAdmin.csvable import CSVAble
 
 
-class CxListType(dict[str, Any]):
+class CxListType:
     """
     The type of list object in CxEngage.
 
@@ -60,7 +60,7 @@ class CxListType(dict[str, Any]):
         )
 
 
-class CxList(dict[str, Any], CSVAble):
+class CxList(CSVAble):
     """
     A list includes the following parameters:
 

@@ -1,6 +1,6 @@
 from typing import Any
 
-class CxQueue(dict[str, Any]):
+class CxQueue:
     tenantID: str
     name: str
     description: str

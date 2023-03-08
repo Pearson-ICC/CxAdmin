@@ -1,7 +1,7 @@
 from typing import Any
 from CxAdmin.csvable import CSVAble
 
-class CxListType(dict[str, Any]):
+class CxListType:
     tenantID: str
     description: str
     createdBy: str
@@ -28,7 +28,7 @@ class CxListType(dict[str, Any]):
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxListType: ...
 
-class CxList(dict[str, Any], CSVAble):
+class CxList(CSVAble):
     tenantId: str
     listType: CxListType
     createdBy: str

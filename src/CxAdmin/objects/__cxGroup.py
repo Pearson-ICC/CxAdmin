@@ -1,7 +1,7 @@
 from typing import Any
 
 
-class CxGroup(dict[str, Any]):
+class CxGroup:
     """
     A group includes the following parameters:
 

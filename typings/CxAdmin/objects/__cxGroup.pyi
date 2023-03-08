@@ -1,6 +1,6 @@
 from typing import Any
 
-class CxGroup(dict[str, Any]):
+class CxGroup:
     tenantId: str
     name: str
     owner: str

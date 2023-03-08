@@ -4,7 +4,7 @@ from CxAdmin.objects.__platformStatus import PlatformStatus
 from CxAdmin.objects.__skill import Skill
 
 
-class CxUser(dict[str, Any]):
+class CxUser:
     activeExtension: dict[str, str]
     additionalRoleIds: Optional[str]
     aliasPlatformUserId: Optional[str]

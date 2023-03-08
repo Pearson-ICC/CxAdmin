@@ -1,7 +1,7 @@
 from typing import Any
 
 
-class CxQueue(dict[str, Any]):
+class CxQueue:
     """
     | Parameter | Type | Description |
     | --- | --- | --- |
