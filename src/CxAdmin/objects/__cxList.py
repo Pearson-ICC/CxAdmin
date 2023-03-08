@@ -1,4 +1,5 @@
 from typing import Any
+from CxAdmin.csvable import CSVAble
 
 
 class CxListType(dict[str, Any]):
@@ -59,7 +60,7 @@ class CxListType(dict[str, Any]):
         )
 
 
-class CxList(dict[str, Any]):
+class CxList(dict[str, Any], CSVAble):
     """
     A list includes the following parameters:
 
@@ -124,7 +125,7 @@ class CxList(dict[str, Any]):
             listItems=data["items"],
         )
 
-    def constructDataCSV(self, headers: bool = False) -> str:
+    def toCSV(self, headers: bool = False) -> list[str]:
         """
         Constructs a CSV of the data items of the CxList for reupload to the tenant.
         """
@@ -138,9 +139,9 @@ class CxList(dict[str, Any]):
             data.append(thisRow)
 
         # convert list of lists to CSV
-        csvData = ""
+        csvData: list[str] = []
         for row in data:
-            csvData += ",".join(row) + "\n"
+            csvData.append(",".join(row))
 
         return csvData
 

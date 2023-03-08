@@ -29,7 +29,7 @@ class CxLists(CxItem[CxList]):
     def uploadList(self, list: CxList) -> dict[str, Any]:
         return self.uploadListCSV(
             list.id,
-            list.constructDataCSV(),
+            list.toCSV(),
         )
 
     def getListCSV(self, listId: str) -> Any:

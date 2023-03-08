@@ -1,35 +1,62 @@
-from _typeshed import Incomplete
 from typing import Any
+from CxAdmin.csvable import CSVAble
 
 class CxListType(dict[str, Any]):
-    tenantID: Incomplete
-    description: Incomplete
-    createdBy: Incomplete
-    updated: Incomplete
-    name: Incomplete
-    fields: Incomplete
-    created: Incomplete
-    updatedBy: Incomplete
-    active: Incomplete
-    id: Incomplete
-    def __init__(self, tenantID: str, description: str, createdBy: str, updated: str, name: str, fields: str, created: str, updatedBy: str, active: str, id: str) -> None: ...
+    tenantID: str
+    description: str
+    createdBy: str
+    updated: str
+    name: str
+    fields: str
+    created: str
+    updatedBy: str
+    active: str
+    id: str
+    def __init__(
+        self,
+        tenantID: str,
+        description: str,
+        createdBy: str,
+        updated: str,
+        name: str,
+        fields: str,
+        created: str,
+        updatedBy: str,
+        active: str,
+        id: str,
+    ) -> None: ...
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxListType: ...
 
-class CxList(dict[str, Any]):
-    tenantId: Incomplete
-    listType: Incomplete
-    createdBy: Incomplete
-    listTypeID: Incomplete
-    updated: Incomplete
-    name: Incomplete
-    created: Incomplete
-    updatedBy: Incomplete
-    active: Incomplete
-    id: Incomplete
-    shared: Incomplete
-    listItems: Incomplete
-    def __init__(self, tenantId: str, listType: CxListType, createdBy: str, listTypeID: str, updated: str, name: str, created: str, updatedBy: str, active: str, id: str, shared: str, listItems: list[dict[str, Any]]) -> None: ...
+class CxList(dict[str, Any], CSVAble):
+    tenantId: str
+    listType: CxListType
+    createdBy: str
+    listTypeID: str
+    updated: str
+    name: str
+    created: str
+    updatedBy: str
+    active: str
+    id: str
+    shared: str
+    listItems: list[dict[str, Any]]
+
+    def __init__(
+        self,
+        tenantId: str,
+        listType: CxListType,
+        createdBy: str,
+        listTypeID: str,
+        updated: str,
+        name: str,
+        created: str,
+        updatedBy: str,
+        active: str,
+        id: str,
+        shared: str,
+        listItems: list[dict[str, Any]],
+    ) -> None: ...
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxList: ...
-    def constructDataCSV(self, headers: bool = ...) -> str: ...
+    def toCSV(self, headers: bool = ...) -> str: ...

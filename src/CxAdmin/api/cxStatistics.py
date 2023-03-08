@@ -22,7 +22,7 @@ class CxStatistics(CxItem[dict[str, Any]]):
 
         return responsesJsons
 
-    def get(self) -> Any:
+    def get(self) -> list[dict[str, Any]]:
         statsJson: list[dict[str, Any]] = self._httpClient.get(
             f"{self._path}/statistics"
         ).json()["result"]
