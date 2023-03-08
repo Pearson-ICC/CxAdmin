@@ -5,10 +5,12 @@ from CxAdmin.api.cxEnvironment import CxEnvironment
 from CxAdmin.api.cxFlows import CxFlows
 from CxAdmin.api.cxUsers import CxUsers
 from CxAdmin.api.cxGroups import CxGroups
+from CxAdmin.api.cxItem import CxItem
 
 from CxAdmin.api.http.httpclient import HTTPClient
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 
+from typing import Any
 import json
 
 
@@ -30,6 +32,8 @@ class Cx:
 
     statistics: CxStatistics
 
+    items: list[CxItem[Any]]
+
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
         self.__base_url = baseURL
         self.__api_key = apiKey
@@ -50,6 +54,15 @@ class Cx:
         self.groups = CxGroups(self.__httpClient, "/groups")
 
         self.statistics = CxStatistics(self.__httpClient, "")
+
+        self.items = [
+            self.environment,
+            self.flows,
+            self.lists,
+            self.queues,
+            self.users,
+            self.groups,
+        ]
 
     @staticmethod
     def fromConfigFile(configFilePath: str) -> "Cx":

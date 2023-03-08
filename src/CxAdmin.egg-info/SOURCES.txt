@@ -4,6 +4,7 @@ setup.cfg
 setup.py
 src/CxAdmin/__cx.py
 src/CxAdmin/__init__.py
+src/CxAdmin/csvable.py
 src/CxAdmin.egg-info/PKG-INFO
 src/CxAdmin.egg-info/SOURCES.txt
 src/CxAdmin.egg-info/dependency_links.txt
