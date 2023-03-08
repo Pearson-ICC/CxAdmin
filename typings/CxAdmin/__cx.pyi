@@ -5,8 +5,13 @@ from CxAdmin.api.cxLists import CxLists as CxLists
 from CxAdmin.api.cxQueues import CxQueues as CxQueues
 from CxAdmin.api.cxStatistics import CxStatistics as CxStatistics
 from CxAdmin.api.cxUsers import CxUsers as CxUsers
+from CxAdmin.api.cxHours import CxHours
+from CxAdmin.api.cxItem import CxItem
+
 from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 from CxAdmin.api.http.httpclient import HTTPClient as HTTPClient
+
+from typing import Any
 
 class Cx:
     environment: CxEnvironment
@@ -15,7 +20,13 @@ class Cx:
     queues: CxQueues
     users: CxUsers
     groups: CxGroups
+    hours: CxHours
     statistics: CxStatistics
-    def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str) -> None: ...
+
+    items: list[CxItem[Any]]
+
+    def __init__(
+        self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str
+    ) -> None: ...
     @staticmethod
     def fromConfigFile(configFilePath: str) -> Cx: ...

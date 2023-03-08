@@ -1,7 +1,7 @@
 from typing import Any
 
 
-class CxBusinessHoursItem(dict[str, Any]):
+class CxBusinessHoursItem:
     """
     +---------------------------+---------+----------------------------+
     | Parameter                 | Type    | Description                |
