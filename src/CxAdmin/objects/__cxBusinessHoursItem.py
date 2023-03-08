@@ -112,8 +112,8 @@ class CxBusinessHoursItem(dict[str, Any]):
         timezone: str,
         active: bool,
         description: str,
-        startTimeMinutes: tuple[str, str],
-        endTimeMinutes: str,
+        startTimeMinutes: dict[str, Any],
+        endTimeMinutes: dict[str, Any],
         created: str,
         updatedBy: str,
         id: str,
@@ -135,6 +135,15 @@ class CxBusinessHoursItem(dict[str, Any]):
 
     @staticmethod
     def from_json(data: dict[str, Any]) -> "CxBusinessHoursItem":
+        startTimeMinutes: dict[str, Any] = {}
+        endTimeMinutes: dict[str, Any] = {}
+
+        for key, value in data.items():
+            if key.endswith("StartTimeMinutes"):
+                startTimeMinutes[key] = value
+            elif key.endswith("EndTimeMinutes"):
+                endTimeMinutes[key] = value
+
         return CxBusinessHoursItem(
             tenantId=data["tenantId"],
             createdBy=data["createdBy"],
@@ -143,8 +152,8 @@ class CxBusinessHoursItem(dict[str, Any]):
             timezone=data["timezone"],
             active=data["active"],
             description=data["description"],
-            startTimeMinutes=data["startTimeMinutes"],
-            endTimeMinutes=data["endTimeMinutes"],
+            startTimeMinutes=startTimeMinutes,
+            endTimeMinutes=endTimeMinutes,
             created=data["created"],
             updatedBy=data["updatedBy"],
             id=data["id"],
