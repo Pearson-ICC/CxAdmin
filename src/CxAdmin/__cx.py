@@ -13,11 +13,11 @@ import json
 
 
 class Cx:
-    __BASE_URL: str
-    __API_KEY: str
-    __API_SECRET: str
-    __TENANT_ID: str
-    __TENANT_URL: str
+    __base_url: str
+    __api_key: str
+    __api_secret: str
+    __tenant_id: str
+    __tenant_url: str
 
     __httpClient: HTTPClientModel
 
@@ -31,14 +31,14 @@ class Cx:
     statistics: CxStatistics
 
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
-        self.__BASE_URL = baseURL  # type: ignore
-        self.__API_KEY = apiKey  # type: ignore
-        self.__API_SECRET = apiSecret  # type: ignore
-        self.__TENANT_ID = tenantID  # type: ignore
-        self.__TENANT_URL = f"{self.__BASE_URL}/v1/tenants/{self.__TENANT_ID}"  # type: ignore
+        self.__base_url = baseURL
+        self.__api_key = apiKey
+        self.__api_secret = apiSecret
+        self.__tenant_id = tenantID
+        self.__tenant_url = f"{self.__base_url}/v1/tenants/{self.__tenant_id}"
 
         self.__httpClient = HTTPClient(
-            basePath=self.__TENANT_URL,
+            basePath=self.__tenant_url,
             token=self.__getToken(),
         )
 
@@ -66,10 +66,10 @@ class Cx:
 
     def __getToken(self) -> str:
         token = HTTPClient.getToken(
-            self.__BASE_URL,
-            self.__API_KEY,
-            self.__API_SECRET,
-            self.__TENANT_ID,
+            self.__base_url,
+            self.__api_key,
+            self.__api_secret,
+            self.__tenant_id,
         )
 
         return token

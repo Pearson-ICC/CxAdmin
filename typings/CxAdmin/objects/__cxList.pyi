@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from typing import Any
 
-class CxListType:
+class CxListType(dict[str, Any]):
     tenantID: Incomplete
     description: Incomplete
     createdBy: Incomplete
@@ -16,7 +16,7 @@ class CxListType:
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxListType: ...
 
-class CxList:
+class CxList(dict[str, Any]):
     tenantId: Incomplete
     listType: Incomplete
     createdBy: Incomplete
@@ -28,8 +28,8 @@ class CxList:
     active: Incomplete
     id: Incomplete
     shared: Incomplete
-    items: Incomplete
-    def __init__(self, tenantId: str, listType: CxListType, createdBy: str, listTypeID: str, updated: str, name: str, created: str, updatedBy: str, active: str, id: str, shared: str, items: list[dict[str, Any]]) -> None: ...
+    listItems: Incomplete
+    def __init__(self, tenantId: str, listType: CxListType, createdBy: str, listTypeID: str, updated: str, name: str, created: str, updatedBy: str, active: str, id: str, shared: str, listItems: list[dict[str, Any]]) -> None: ...
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxList: ...
     def constructDataCSV(self, headers: bool = ...) -> str: ...

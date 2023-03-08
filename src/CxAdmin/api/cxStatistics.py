@@ -3,7 +3,7 @@ from typing import Any
 from CxAdmin.api.cxItem import CxItem
 
 
-class CxStatistics(CxItem):
+class CxStatistics(CxItem[dict[str, Any]]):
     def getInteractions(
         self, between: tuple[datetime, datetime]
     ) -> list[dict[str, Any]]:

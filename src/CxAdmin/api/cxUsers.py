@@ -3,7 +3,7 @@ from CxAdmin.api.cxItem import CxItem
 from CxAdmin.objects.__cxUser import CxUser
 
 
-class CxUsers(CxItem):
+class CxUsers(CxItem[CxUser]):
     def getAllUsers(self) -> list[CxUser]:
         usersJson: list[dict[str, Any]] = self._httpClient.get(self._path).json()[
             "result"

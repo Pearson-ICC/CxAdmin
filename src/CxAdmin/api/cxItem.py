@@ -1,9 +1,11 @@
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from abc import abstractmethod
-from typing import Any
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
 
 
-class CxItem:
+class CxItem(Generic[T]):
     _httpClient: HTTPClientModel
     _path: str = ""
 
@@ -12,5 +14,5 @@ class CxItem:
         self._path = path
 
     @abstractmethod
-    def get(self) -> list[Any]:
+    def get(self) -> list[T]:
         raise NotImplementedError()

@@ -2,7 +2,7 @@ from typing import Any
 from CxAdmin.api.cxItem import CxItem
 
 
-class CxEnvironment(CxItem):
+class CxEnvironment(CxItem[Any]):
     def getTenant(self) -> Any:
         return self._httpClient.get(self._path).json()
 

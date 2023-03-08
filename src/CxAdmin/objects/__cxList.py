@@ -1,7 +1,7 @@
 from typing import Any
 
 
-class CxListType:
+class CxListType(dict[str, Any]):
     """
     The type of list object in CxEngage.
 
@@ -59,7 +59,7 @@ class CxListType:
         )
 
 
-class CxList:
+class CxList(dict[str, Any]):
     """
     A list includes the following parameters:
 
@@ -92,7 +92,7 @@ class CxList:
         active: str,
         id: str,
         shared: str,
-        items: list[dict[str, Any]],
+        listItems: list[dict[str, Any]],
     ):
         self.tenantId = tenantId
         self.listType = listType
@@ -105,7 +105,7 @@ class CxList:
         self.active = active
         self.id = id
         self.shared = shared
-        self.items = items
+        self.listItems = listItems
 
     @staticmethod
     def from_json(data: dict[str, Any]) -> "CxList":
@@ -121,7 +121,7 @@ class CxList:
             active=data["active"],
             id=data["id"],
             shared=data["shared"],
-            items=data["items"],
+            listItems=data["items"],
         )
 
     def constructDataCSV(self, headers: bool = False) -> str:
@@ -130,10 +130,10 @@ class CxList:
         """
         data: list[list[str]] = []
         if headers:
-            headings = list(self.items[0].keys())
+            headings = list(self.listItems[0].keys())
             data.append(headings)
 
-        for item in self.items:
+        for item in self.listItems:
             thisRow = list(item.values())
             data.append(thisRow)
 

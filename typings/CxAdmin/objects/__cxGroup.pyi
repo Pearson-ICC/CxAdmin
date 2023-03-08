@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from typing import Any
 
-class CxGroup:
+class CxGroup(dict[str, Any]):
     tenantId: Incomplete
     name: Incomplete
     owner: Incomplete

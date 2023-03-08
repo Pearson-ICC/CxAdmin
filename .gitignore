@@ -9,3 +9,4 @@ Pearson/
 **.DS_Store
 dist/
 test.py
+playground.py

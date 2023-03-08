@@ -4,7 +4,7 @@ from CxAdmin.objects.__cxList import CxList
 import json
 
 
-class CxLists(CxItem):
+class CxLists(CxItem[CxList]):
     def get(self) -> list[CxList]:
         listsJson: list[dict[str, Any]] = self._httpClient.get(self._path).json()[
             "result"

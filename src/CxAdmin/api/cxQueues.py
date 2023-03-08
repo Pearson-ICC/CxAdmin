@@ -1,9 +1,10 @@
 from typing import Any
+from CxAdmin.api.cxItem import CxItem
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from CxAdmin.objects.__cxQueue import CxQueue
 
 
-class CxQueues:
+class CxQueues(CxItem[CxQueue]):
     _httpClient: HTTPClientModel
     _path: str = ""
 

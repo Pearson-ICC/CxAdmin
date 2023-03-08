@@ -1,8 +1,8 @@
+from CxAdmin.api.cxItem import CxItem as CxItem
 from datetime import datetime
-from CxAdmin.api.cxItem import CxItem
 from typing import Any
 
-class CxStatistics(CxItem):
+class CxStatistics(CxItem[Any]):
     def getInteractions(
         self, between: tuple[datetime, datetime]
     ) -> list[dict[str, Any]]: ...
