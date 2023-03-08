@@ -24,7 +24,7 @@ This API is designed to be easily expandable. If you would like to add functiona
 
 ### Set up API client
 
-```python
+```py
 import CxAdmin
 
 cx = CxAdmin.Cx(
@@ -37,7 +37,7 @@ cx = CxAdmin.Cx(
 
 or
 
-```python
+```py
 import CxAdmin
 
 cx = CxAdmin.Cx.fromConfigFile("config.json")
@@ -57,45 +57,51 @@ cx = CxAdmin.Cx.fromConfigFile("config.json")
 ### Queues
 
 #### Get list of queues
-```python
+```py
 cx.queues.getQueues()
 ```
 or
-```python
+```py
 cx.queues.get() # same as getQueues()
 ```
 
 #### Get active queues
-```python
+```py
 cx.queues.getActiveQueues()
 ```
 
 ### Lists
 
 #### Get all lists
-```python
+```py
 cx.lists.get()
 ```
 
 #### Get list by ID
-```python
+```py
 cx.lists.getList(listId)
 ```
 
 #### Get list as CSV
-```python
+```py
 cx.lists.getListCSV(listId)
+```
+
+#### Convert list object to CSV
+```py
+myList = cx.lists.getList(listId) # get a list
+csv: list[str] = myList.toCSV() # convert to CSV, returns a list of strings
 ```
 
 ### Users
 
 #### Get all users
 
-```python
+```py
 cx.users.getAllUsers()
 ```
 or
-```python
+```py
 cx.users.get() # same as getAllUsers()
 ```
 
@@ -103,11 +109,11 @@ cx.users.get() # same as getAllUsers()
 
 #### Get all groups
 
-```python
+```py
 cx.groups.getGroups()
 ```
 or
-```python
+```py
 cx.groups.get() # same as getGroups()
 ```
 
@@ -115,17 +121,17 @@ cx.groups.get() # same as getGroups()
 
 #### Get tenant
     
-```python
+```py
 cx.environment.getTenant()
 ```
 or
-```python
+```py
 cx.environment.get() # same as getTenant()
 ```
 
 #### Get regions
     
-```python
+```py
 cx.environment.getRegions()
 ```
 
@@ -133,16 +139,16 @@ cx.environment.getRegions()
 
 #### Get all flows
 
-```python
+```py
 cx.flows.getFlows()
 ```
 or
-```python
+```py
 cx.flows.get() # same as getFlows()
 ```
 
 ### Statistics
 
-```python
+```py
 cx.statistics.getInteractions(between: (datetime, datetime))
 ```
