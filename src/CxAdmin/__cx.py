@@ -5,6 +5,7 @@ from CxAdmin.api.cxEnvironment import CxEnvironment
 from CxAdmin.api.cxFlows import CxFlows
 from CxAdmin.api.cxUsers import CxUsers
 from CxAdmin.api.cxGroups import CxGroups
+from CxAdmin.api.cxHours import CxHours
 from CxAdmin.api.cxItem import CxItem
 
 from CxAdmin.api.http.httpclient import HTTPClient
@@ -29,6 +30,7 @@ class Cx:
     queues: CxQueues
     users: CxUsers
     groups: CxGroups
+    hours: CxHours
 
     statistics: CxStatistics
 
@@ -52,6 +54,7 @@ class Cx:
         self.queues = CxQueues(self.__httpClient, "/queues")
         self.users = CxUsers(self.__httpClient, "/users")
         self.groups = CxGroups(self.__httpClient, "/groups")
+        self.hours = CxHours(self.__httpClient, "/business-hours")
 
         self.statistics = CxStatistics(self.__httpClient, "")
 
@@ -62,6 +65,7 @@ class Cx:
             self.queues,
             self.users,
             self.groups,
+            self.hours,
         ]
 
     @staticmethod

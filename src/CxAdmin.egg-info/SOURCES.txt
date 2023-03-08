@@ -14,6 +14,7 @@ src/CxAdmin/api/__init__.py
 src/CxAdmin/api/cxEnvironment.py
 src/CxAdmin/api/cxFlows.py
 src/CxAdmin/api/cxGroups.py
+src/CxAdmin/api/cxHours.py
 src/CxAdmin/api/cxItem.py
 src/CxAdmin/api/cxLists.py
 src/CxAdmin/api/cxQueues.py
@@ -22,6 +23,7 @@ src/CxAdmin/api/cxUsers.py
 src/CxAdmin/api/http/__init__.py
 src/CxAdmin/api/http/httpClientModel.py
 src/CxAdmin/api/http/httpclient.py
+src/CxAdmin/objects/__cxBusinessHoursItem.py
 src/CxAdmin/objects/__cxGroup.py
 src/CxAdmin/objects/__cxList.py
 src/CxAdmin/objects/__cxQueue.py
