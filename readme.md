@@ -14,6 +14,7 @@ This API is designed to be easily expandable. If you would like to add functiona
 
 ## Usage – Contents
 * [Set up API client](#set-up-api-client)
+* [Get Everything](#get-everything)
 * [Queues](#queues)
 * [Lists](#lists)
 * [Users](#users)
@@ -54,6 +55,23 @@ cx = CxAdmin.Cx.fromConfigFile("config.json")
     "tenantID": "893jwa23-85k2-895k-1562-93pot7367185"
 }
 ```
+
+### Get Everything
+
+#### Get everything
+
+```py
+for item in cx.items:
+    print(item)
+    out = item.get()
+    name = str(item)[13:]
+    name = name[: name.index(".")]
+    file = open(f"output/{name}.json", "w")
+    output = json.dumps(out)
+    file.write(output)
+```
+
+This will fetch all items from CxEngage and save them to `output/` as JSON files.
 
 ### Queues
 
