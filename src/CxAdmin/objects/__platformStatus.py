@@ -3,7 +3,7 @@ from CxAdmin.jsonable import JSONSerializable
 from typing import Any
 
 
-class PlatformStatus(Enum, JSONSerializable):
+class PlatformStatus(JSONSerializable, Enum):
     pending = "pending"
     accepted = "accepted"
     enabled = "enabled"
