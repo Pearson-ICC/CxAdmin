@@ -61,6 +61,9 @@ class CxListType:
             id=data["id"],
         )
 
+    def __json__(self) -> dict[str, Any]:
+        return self.__dict__
+
 
 class CxList(CSVAble):
     """
