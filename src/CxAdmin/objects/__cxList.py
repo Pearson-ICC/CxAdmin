@@ -1,4 +1,6 @@
 from typing import Any
+import json_fix
+
 from CxAdmin.csvable import CSVAble
 
 
@@ -150,3 +152,6 @@ class CxList(CSVAble):
 
     def __repr__(self) -> str:
         return self.__str__()
+
+    def __json__(self) -> dict[str, Any]:
+        return self.__dict__
