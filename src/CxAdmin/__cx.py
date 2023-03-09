@@ -11,8 +11,10 @@ from CxAdmin.api.cxItem import CxItem
 from CxAdmin.api.http.httpclient import HTTPClient
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 
-from typing import Any
+from CxAdmin.jsonable import JSONSerializable
+
 import json
+from typing import Union, Any
 
 
 class Cx:
@@ -34,7 +36,12 @@ class Cx:
 
     statistics: CxStatistics
 
-    items: list[CxItem[Any]]
+    items: list[
+        Union[
+            CxItem[JSONSerializable],
+            CxItem[dict[str, Any]],
+        ],
+    ]
 
     def __init__(self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str):
         self.__base_url = baseURL

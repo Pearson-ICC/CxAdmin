@@ -30,7 +30,7 @@ class CxListType(JSONSerializable):
     def from_json(data: dict[str, Any]) -> CxListType: ...
     def to_json(self) -> dict[str, Any]: ...
 
-class CxList(CSVAble, JSONSerializable):
+class CxList(JSONSerializable, CSVAble):
     tenantId: str
     listType: CxListType
     createdBy: str

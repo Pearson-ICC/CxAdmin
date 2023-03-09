@@ -7,12 +7,13 @@ from typing import TypeVar, Generic, Any, Union
 A = TypeVar(
     "A",
     bound=Union[
-        JSONSerializable,
         list[JSONSerializable],
+        JSONSerializable,
         list[dict[str, Any]],
         dict[str, Any],
         str,
     ],
+    covariant=True,
 )
 
 class CxItem(Generic[A], metaclass=abc.ABCMeta):
@@ -21,4 +22,4 @@ class CxItem(Generic[A], metaclass=abc.ABCMeta):
 
     def __init__(self, httpClient: HTTPClientModel, path: str) -> None: ...
     @abstractmethod
-    def get(self) -> list[A]: ...
+    def get(self) -> Union[A, list[A]]: ...

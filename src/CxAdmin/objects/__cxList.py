@@ -76,7 +76,7 @@ class CxListType(JSONSerializable):
         return asDict
 
 
-class CxList(CSVAble, JSONSerializable):
+class CxList(JSONSerializable, CSVAble):
     """
     A list includes the following parameters:
 

@@ -11,7 +11,9 @@ from CxAdmin.api.cxItem import CxItem
 from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
 from CxAdmin.api.http.httpclient import HTTPClient as HTTPClient
 
-from typing import Any
+from CxAdmin.jsonable import JSONSerializable
+
+from typing import Any, Union
 
 class Cx:
     environment: CxEnvironment
@@ -23,7 +25,7 @@ class Cx:
     hours: CxHours
     statistics: CxStatistics
 
-    items: list[CxItem[Any]]
+    items: list[Union[CxItem[JSONSerializable], CxItem[dict[str, Any]]]]
 
     def __init__(
         self, baseURL: str, apiKey: str, apiSecret: str, tenantID: str

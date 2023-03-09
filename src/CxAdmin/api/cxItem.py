@@ -7,12 +7,13 @@ from typing import TypeVar, Generic, Any, Union
 A = TypeVar(
     "A",
     bound=Union[
-        JSONSerializable,
         list[JSONSerializable],
+        JSONSerializable,
         list[dict[str, Any]],
         dict[str, Any],
         str,
     ],
+    covariant=True,  # this took a while to bugfix…
 )
 
 
@@ -25,5 +26,5 @@ class CxItem(Generic[A], metaclass=abc.ABCMeta):
         self._path = path
 
     @abstractmethod
-    def get(self) -> list[A]:
+    def get(self) -> Union[A, list[A]]:
         raise NotImplementedError()
