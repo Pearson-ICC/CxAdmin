@@ -1,5 +1,6 @@
 from typing import Any, Optional
 from datetime import datetime
+import json_fix  # type: ignore
 from CxAdmin.objects.__platformStatus import PlatformStatus
 from CxAdmin.objects.__skill import Skill
 
@@ -134,3 +135,6 @@ class CxUser:
 
     def __repr__(self) -> str:
         return self.to_json().__repr__()
+
+    def __json__(self) -> dict[str, Any]:
+        return self.to_json()
