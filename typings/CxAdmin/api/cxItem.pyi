@@ -1,9 +1,10 @@
 import abc
 from CxAdmin.api.http.httpClientModel import HTTPClientModel as HTTPClientModel
+from CxAdmin.jsonable import JSONSerializable
 from abc import abstractmethod
 from typing import TypeVar, Generic
 
-T = TypeVar("T")
+T = TypeVar("T", bound=JSONSerializable)
 
 class CxItem(Generic[T], metaclass=abc.ABCMeta):
     _httpClient: HTTPClientModel

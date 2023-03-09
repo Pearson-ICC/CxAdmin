@@ -1,7 +1,8 @@
 from typing import Any
+from CxAdmin.jsonable import JSONSerializable
 
 
-class CxBusinessHoursItem:
+class CxBusinessHoursItem(JSONSerializable):
     """
     +---------------------------+---------+----------------------------+
     | Parameter                 | Type    | Description                |
@@ -204,3 +205,20 @@ class CxBusinessHoursItem:
             businessHours[day] = (openTime, closeTime)
 
         return businessHours
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "tenantId": self.tenantId,
+            "createdBy": self.createdBy,
+            "updated": self.updated,
+            "name": self.name,
+            "timezone": self.timezone,
+            "active": self.active,
+            "description": self.description,
+            "startTimeMinutes": self.startTimeMinutes,
+            "endTimeMinutes": self.endTimeMinutes,
+            "created": self.created,
+            "updatedBy": self.updatedBy,
+            "id": self.id,
+            "exceptions": self.exceptions,
+        }

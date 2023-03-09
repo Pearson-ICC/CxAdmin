@@ -1,9 +1,10 @@
 from CxAdmin.objects.__platformStatus import PlatformStatus as PlatformStatus
 from CxAdmin.objects.__skill import Skill as Skill
+from CxAdmin.jsonable import JSONSerializable
 from datetime import datetime
 from typing import Any, Optional
 
-class CxUser:
+class CxUser(JSONSerializable):
     activeExtension: dict[str, str]
     additionalRoleIds: Optional[str]
     aliasPlatformUserId: Optional[str]
@@ -54,4 +55,3 @@ class CxUser:
     @staticmethod
     def from_json(data: dict[str, Any]) -> CxUser: ...
     def to_json(self) -> dict[str, Any]: ...
-    def __json__(self) -> dict[str, Any]: ...

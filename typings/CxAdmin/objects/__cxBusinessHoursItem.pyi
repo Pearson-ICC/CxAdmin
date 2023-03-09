@@ -1,6 +1,7 @@
 from typing import Any
+from CxAdmin.jsonable import JSONSerializable
 
-class CxBusinessHoursItem:
+class CxBusinessHoursItem(JSONSerializable):
     def __init__(
         self,
         tenantId: str,
@@ -22,3 +23,4 @@ class CxBusinessHoursItem:
     def __str__(self) -> str: ...
     def __repr__(self) -> str: ...
     def getBusinessHours(self) -> dict[str, tuple[int, int]]: ...
+    def to_json(self) -> dict[str, Any]: ...

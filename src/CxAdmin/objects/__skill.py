@@ -1,8 +1,9 @@
 from datetime import datetime
 from typing import Any
+from CxAdmin.jsonable import JSONSerializable
 
 
-class Skill:
+class Skill(JSONSerializable):
     id: str
     name: str
     proficiency: int

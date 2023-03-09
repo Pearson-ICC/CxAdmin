@@ -1,7 +1,8 @@
 from typing import Any
+from CxAdmin.jsonable import JSONSerializable
 
 
-class CxGroup:
+class CxGroup(JSONSerializable):
     """
     A group includes the following parameters:
 
@@ -63,3 +64,17 @@ class CxGroup:
 
     def __repr__(self) -> str:
         return self.__str__()
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "tenantId": self.tenantId,
+            "name": self.name,
+            "owner": self.owner,
+            "status": self.status,
+            "description": self.description,
+            "created": self.created,
+            "createdBy": self.createdBy,
+            "updated": self.updated,
+            "updatedBy": self.updatedBy,
+            "id": self.id,
+        }

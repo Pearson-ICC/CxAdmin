@@ -1,10 +1,9 @@
 from typing import Any
-import json_fix  # type: ignore
-
 from CxAdmin.csvable import CSVAble
+from CxAdmin.jsonable import JSONSerializable
 
 
-class CxListType:
+class CxListType(JSONSerializable):
     """
     The type of list object in CxEngage.
 
@@ -61,7 +60,7 @@ class CxListType:
             id=data["id"],
         )
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         asDict = {
             "tenantID": self.tenantID,
             "description": self.description,
@@ -76,11 +75,8 @@ class CxListType:
         }
         return asDict
 
-    def __json__(self) -> dict[str, Any]:
-        return self.to_dict()
 
-
-class CxList(CSVAble):
+class CxList(CSVAble, JSONSerializable):
     """
     A list includes the following parameters:
 
@@ -171,7 +167,7 @@ class CxList(CSVAble):
     def __repr__(self) -> str:
         return self.__str__()
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "tenantId": self.tenantId,
             "listType": self.listType,
@@ -186,6 +182,3 @@ class CxList(CSVAble):
             "shared": self.shared,
             "listItems": self.listItems,
         }
-
-    def __json__(self) -> dict[str, Any]:
-        return self.to_dict()

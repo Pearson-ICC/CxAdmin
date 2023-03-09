@@ -1,8 +1,8 @@
 from typing import Any
-import json_fix  # type: ignore
+from CxAdmin.jsonable import JSONSerializable
 
 
-class CxQueue:
+class CxQueue(JSONSerializable):
     """
     | Parameter | Type | Description |
     | --- | --- | --- |
@@ -63,7 +63,7 @@ class CxQueue:
     def __repr__(self) -> str:
         return self.__str__()
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "tenantID": self.tenantID,
             "name": self.name,
@@ -76,6 +76,3 @@ class CxQueue:
             "activeVersion": self.activeVersion,
             "id": self.id,
         }
-
-    def __json__(self) -> dict[str, Any]:
-        return self.to_dict()
