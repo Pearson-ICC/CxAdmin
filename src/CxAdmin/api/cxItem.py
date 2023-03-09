@@ -2,12 +2,21 @@ import abc
 from CxAdmin.api.http.httpClientModel import HTTPClientModel
 from CxAdmin.jsonable import JSONSerializable
 from abc import abstractmethod
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, Any, Union
 
-T = TypeVar("T", bound=JSONSerializable)
+A = TypeVar(
+    "A",
+    bound=Union[
+        JSONSerializable,
+        list[JSONSerializable],
+        list[dict[str, Any]],
+        dict[str, Any],
+        str,
+    ],
+)
 
 
-class CxItem(Generic[T], metaclass=abc.ABCMeta):
+class CxItem(Generic[A], metaclass=abc.ABCMeta):
     _httpClient: HTTPClientModel
     _path: str = ""
 
@@ -16,5 +25,5 @@ class CxItem(Generic[T], metaclass=abc.ABCMeta):
         self._path = path
 
     @abstractmethod
-    def get(self) -> list[T]:
+    def get(self) -> list[A]:
         raise NotImplementedError()

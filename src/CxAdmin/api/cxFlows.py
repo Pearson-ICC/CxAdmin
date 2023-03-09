@@ -2,7 +2,7 @@ from typing import Any
 from CxAdmin.api.cxItem import CxItem
 
 
-class CxFlows(CxItem[Any]):
+class CxFlows(CxItem[dict[str, Any]]):
     def getFlows(self) -> list[dict[str, Any]]:
         flowsJson: list[dict[str, Any]] = self._httpClient.get(self._path).json()[
             "result"
@@ -14,5 +14,5 @@ class CxFlows(CxItem[Any]):
     def getFlow(self, flowId: str) -> Any:
         raise NotImplementedError()
 
-    def get(self) -> Any:
+    def get(self) -> list[dict[str, Any]]:
         return self.getFlows()

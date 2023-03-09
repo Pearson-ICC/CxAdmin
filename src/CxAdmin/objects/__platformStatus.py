@@ -1,9 +1,7 @@
 from enum import Enum
-from CxAdmin.jsonable import JSONSerializable
-from typing import Any
 
 
-class PlatformStatus(JSONSerializable, Enum):
+class PlatformStatus(Enum):
     pending = "pending"
     accepted = "accepted"
     enabled = "enabled"
@@ -13,6 +11,3 @@ class PlatformStatus(JSONSerializable, Enum):
         if isinstance(__o, PlatformStatus):
             return self.value == __o.value
         return False
-
-    def to_json(self) -> dict[str, Any]:
-        return self.value
