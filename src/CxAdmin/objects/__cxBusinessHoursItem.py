@@ -165,3 +165,42 @@ class CxBusinessHoursItem:
 
     def __repr__(self) -> str:
         return self.__str__()
+
+    def getBusinessHours(self) -> dict[str, tuple[int, int]]:
+        """returns an *unordered* dict of
+        ```json
+        {
+          "mon": (start minute, end minute),
+          ...[tue, wed, thu, fri, sat]...
+          "sun": (start minute, end minute)
+        }
+        ```
+        """
+
+        # Create dict of opening times
+        openingTimes: dict[str, int] = dict()
+        for day, time in self.startTimeMinutes.items():
+            openingTimes[day] = time
+
+        # Create dict of closing times
+        closingTimes: dict[str, int] = dict()
+
+        for day, time in self.endTimeMinutes.items():
+            closingTimes[day] = time
+
+        # Create dict of business hours
+        businessHours: dict[str, tuple[int, int]] = dict()
+
+        # now construct a dict of {original dicts' keys, (both values in tuple)}
+        openingKeys = list(openingTimes.keys())
+        closingKeys = list(closingTimes.keys())
+        daysList = [day[:3] for day in list(openingTimes.keys())]
+
+        for i in range(0, len(daysList)):
+            day = daysList[i]
+            openTime = openingTimes[openingKeys[i]]
+            closeTime = closingTimes[closingKeys[i]]
+
+            businessHours[day] = (openTime, closeTime)
+
+        return businessHours

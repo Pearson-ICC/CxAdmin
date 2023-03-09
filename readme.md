@@ -18,6 +18,7 @@ This API is designed to be easily expandable. If you would like to add functiona
 * [Lists](#lists)
 * [Users](#users)
 * [Groups](#groups)
+* [Business Hours](#hours)
 * [Environment](#environment)
 * [Flows](#flows)
 * [Statistics](#statistics)
@@ -117,6 +118,18 @@ or
 cx.groups.get() # same as getGroups()
 ```
 
+### Hours
+
+#### Get list of business hours
+```py
+hours = cx.hours.get()
+```
+
+#### Get info for a specific business hours object (example)
+```py
+for hour in hours:
+    print(f"{hour.name} - {hour.getBusinessHours()})
+```
 ### Environment
 
 #### Get tenant
