@@ -1,4 +1,5 @@
 from enum import Enum
+import json_fix  # type: ignore
 
 
 class PlatformStatus(Enum):
@@ -11,3 +12,6 @@ class PlatformStatus(Enum):
         if isinstance(__o, PlatformStatus):
             return self.value == __o.value
         return False
+
+    def __json__(self) -> str:
+        return self.value
