@@ -1,5 +1,5 @@
 from typing import Any
-import json_fix
+import json_fix  # type: ignore
 
 from CxAdmin.csvable import CSVAble
 
@@ -61,8 +61,23 @@ class CxListType:
             id=data["id"],
         )
 
+    def to_dict(self) -> dict[str, Any]:
+        asDict = {
+            "tenantID": self.tenantID,
+            "description": self.description,
+            "createdBy": self.createdBy,
+            "updated": self.updated,
+            "name": self.name,
+            "fields": self.fields,
+            "created": self.created,
+            "updatedBy": self.updatedBy,
+            "active": self.active,
+            "id": self.id,
+        }
+        return asDict
+
     def __json__(self) -> dict[str, Any]:
-        return self.__dict__
+        return self.to_dict()
 
 
 class CxList(CSVAble):
@@ -156,5 +171,21 @@ class CxList(CSVAble):
     def __repr__(self) -> str:
         return self.__str__()
 
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "tenantId": self.tenantId,
+            "listType": self.listType,
+            "createdBy": self.createdBy,
+            "listTypeID": self.listTypeID,
+            "updated": self.updated,
+            "name": self.name,
+            "created": self.created,
+            "updatedBy": self.updatedBy,
+            "active": self.active,
+            "id": self.id,
+            "shared": self.shared,
+            "listItems": self.listItems,
+        }
+
     def __json__(self) -> dict[str, Any]:
-        return self.__dict__
+        return self.to_dict()

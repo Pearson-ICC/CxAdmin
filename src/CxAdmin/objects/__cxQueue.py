@@ -1,4 +1,5 @@
 from typing import Any
+import json_fix  # type: ignore
 
 
 class CxQueue:
@@ -61,3 +62,20 @@ class CxQueue:
 
     def __repr__(self) -> str:
         return self.__str__()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "tenantID": self.tenantID,
+            "name": self.name,
+            "description": self.description,
+            "updated": self.updated,
+            "updatedBy": self.updatedBy,
+            "created": self.created,
+            "createdBy": self.createdBy,
+            "active": self.active,
+            "activeVersion": self.activeVersion,
+            "id": self.id,
+        }
+
+    def __json__(self) -> dict[str, Any]:
+        return self.to_dict()
