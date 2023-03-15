@@ -87,7 +87,7 @@ class CxStatistics(CxItem[dict[str, Any]]):
             data: dict[str, str | float | bool | int] = dict()
             for heading in headings:
                 data[heading] = interaction.get(heading, "")
-            for i, queue in enumerate(interaction["queues"]):
+            for i, queue in enumerate(interaction.get("queues", [])):
                 data[f"queue{i}Name"] = queue["queueId"]
                 data[f"queue{i}Time"] = queue["queueTime"]
             yield ",".join([str(data[heading]) for heading in headings])
