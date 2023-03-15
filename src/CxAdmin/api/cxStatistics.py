@@ -75,6 +75,26 @@ class CxStatistics(CxItem[dict[str, Any]]):
             "flagType",  # str
             # "agents",  # list[dict[str, Any]] # ignore
             "interactionId",  # str
+            "queue1Name",
+            "queue1Time",
+            "queue2Name",
+            "queue2Time",
+            "queue3Name",
+            "queue3Time",
+            "queue4Name",
+            "queue4Time",
+            "queue5Name",
+            "queue5Time",
+            "queue6Name",
+            "queue6Time",
+            "queue7Name",
+            "queue7Time",
+            "queue8Name",
+            "queue8Time",
+            "queue9Name",
+            "queue9Time",
+            "queue10Name",
+            "queue10Time",
         ]
         """
             "queueXName",  # data["queues"][X]["queueId"] # str
@@ -87,7 +107,7 @@ class CxStatistics(CxItem[dict[str, Any]]):
             data: dict[str, str | float | bool | int] = dict()
             for heading in headings:
                 data[heading] = interaction.get(heading, "")
-            for i, queue in enumerate(interaction.get("queues", [])):
+            for i, queue in enumerate(interaction.get("queues", []), start=1):
                 data[f"queue{i}Name"] = queue["queueId"]
                 data[f"queue{i}Time"] = queue["queueTime"]
             yield ",".join([str(data[heading]) for heading in headings])
