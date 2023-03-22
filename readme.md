@@ -71,10 +71,6 @@ if dev:
 else:
     cx = Cx.fromConfigFile("config.prod.json")
 
-groupOut = cx.groups.get()
-p = json.dumps(groupOut)
-print(p)
-
 for item in cx.items:
     print(item)
     out = item.get()
