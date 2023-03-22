@@ -11,6 +11,7 @@ This API is designed to be easily expandable. If you would like to add functiona
 
 ## To Do
 - [] Any object to CSV
+- [X] Any object to JSON
 
 ## Usage – Contents
 * [Set up API client](#set-up-api-client)
