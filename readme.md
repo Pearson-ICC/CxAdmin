@@ -61,6 +61,20 @@ cx = CxAdmin.Cx.fromConfigFile("config.json")
 #### Get everything
 
 ```py
+from CxAdmin import Cx
+import json
+
+cx: Cx
+dev = True
+if dev:
+    cx = Cx.fromConfigFile("config.dev.json")
+else:
+    cx = Cx.fromConfigFile("config.prod.json")
+
+groupOut = cx.groups.get()
+p = json.dumps(groupOut)
+print(p)
+
 for item in cx.items:
     print(item)
     out = item.get()
