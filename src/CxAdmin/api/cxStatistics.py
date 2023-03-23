@@ -4,6 +4,9 @@ from CxAdmin.api.cxItem import CxItem
 
 
 class CxStatistics(CxItem[dict[str, Any]]):
+    def get(self) -> list[dict[str, Any]]:
+        raise NotImplementedError()
+
     def getInteractions(
         self,
         between: tuple[datetime, datetime],
