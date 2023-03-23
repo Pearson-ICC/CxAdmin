@@ -8,31 +8,28 @@ class CxStatistics(CxItem[dict[str, Any]]):
         self,
         between: tuple[datetime, datetime],
         verbose: bool = False,
-    ) -> list[dict[str, Any]]:
-        params: str = f"?start={between[0]}&end={between[1]}&limit=1000"
+    ) -> Generator[dict[str, Any], None, None]:
+        betweenStr = [b.isoformat() for b in between]
         responsesJsons: list[dict[str, Any]] = []
-        response = self._httpClient.get(f"{self._path}/interactions{params}")
-        responseJson = response.json()
-        responseResults = responseJson["results"]
-        responsesJsons.extend(responseResults)
-        while len(responsesJsons) < responseJson["total"]:
-            params = f"?start={between[0]}&end={between[1]}&limit=1000&offset={len(responsesJsons)}"
+        while True:
+            params = f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={len(responsesJsons)}"
             response = self._httpClient.get(f"{self._path}/interactions{params}")
             responseJson = response.json()
+            if len(responsesJsons) >= responseJson["total"]:
+                break
             if verbose:
                 offset = responseJson["offset"]
                 total = responseJson["total"]
                 print(f"Fetched record {offset} of {total}")
             responseResults = responseJson["results"]
-            responsesJsons.extend(responseResults)
+            for result in responseResults:
+                yield result
 
-        return responsesJsons
-
-    def get(self) -> list[dict[str, Any]]:
-        statsJson: list[dict[str, Any]] = self._httpClient.get(
-            f"{self._path}/statistics"
-        ).json()["result"]
-        return statsJson
+    # def get(self) -> list[dict[str, Any]]:
+    # statsJson: list[dict[str, Any]] = self._httpClient.get(
+    #     f"{self._path}/statistics" # endpoint does not exist
+    # ).json()["result"]
+    # return statsJson
 
     @staticmethod
     def convertInteractionsToCSV(
@@ -111,3 +108,13 @@ class CxStatistics(CxItem[dict[str, Any]]):
                 data[f"queue{i}Name"] = queue["queueId"]
                 data[f"queue{i}Time"] = queue["queueTime"]
             yield ",".join([str(data[heading]) for heading in headings])
+
+    def getCalls(
+        self, between: tuple[datetime, datetime]
+    ) -> Generator[dict[str, Any], None, None]:
+        interactions = self.getInteractions(between)
+        # calls are interactions where the property `ivrAbandoned` either does not exist or is false
+        for interaction in interactions:
+            ivrAbandoned = interaction.get("ivrAbandoned")  # (False | None) | True
+            if (ivrAbandoned is None) or (ivrAbandoned == False):
+                yield interaction
