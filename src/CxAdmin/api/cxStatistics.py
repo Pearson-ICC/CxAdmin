@@ -12,6 +12,9 @@ class CxStatistics(CxItem[dict[str, Any]]):
         between: tuple[datetime, datetime],
         verbose: bool = False,
     ) -> Generator[dict[str, Any], None, None]:
+        # check dates are in the correct order
+        if between[0] > between[1]:
+            raise ValueError("Dates must be in chronological order")
         betweenStr = [b.isoformat() for b in between]
         responsesJsons: list[dict[str, Any]] = []
         while True:
