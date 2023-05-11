@@ -16,20 +16,25 @@ class CxStatistics(CxItem[dict[str, Any]]):
         if between[0] > between[1]:
             raise ValueError("Dates must be in chronological order")
         betweenStr = [b.isoformat() for b in between]
-        responsesJsons: list[dict[str, Any]] = []
+        offset = 0
         while True:
-            params = f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={len(responsesJsons)}"
+            params = (
+                f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
+            )
             response = self._httpClient.get(f"{self._path}/interactions{params}")
             responseJson = response.json()
-            if len(responsesJsons) >= responseJson["total"]:
-                break
             if verbose:
                 offset = responseJson["offset"]
                 total = responseJson["total"]
                 print(f"Fetched record {offset} of {total}")
             responseResults = responseJson["results"]
+            if responseResults is None:
+                break
             for result in responseResults:
+                offset += 1
                 yield result
+            if offset >= responseJson["total"]:
+                break
 
     # def get(self) -> list[dict[str, Any]]:
     # statsJson: list[dict[str, Any]] = self._httpClient.get(
