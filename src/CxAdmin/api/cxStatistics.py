@@ -21,30 +21,34 @@ class CxStatistics(CxItem[dict[str, Any]]):
             raise ValueError("Dates must be in chronological order")
         betweenStr = [b.isoformat() for b in between]
         offset = 0
-        retry = True
-        while retry:
+        total = 1
+        while offset < total:
+            responseJson: dict[str, Any] | None = None
             params = (
                 f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
             )
-            response = self._httpClient.get(f"{self._path}/interactions{params}")
-            responseJson: dict[str, Any] | None = None
+            retry = True
+            while retry:
+                response = self._httpClient.get(f"{self._path}/interactions{params}")
 
-            try:
-                responseJson = response.json()
-            except JSONDecodeError:
-                if verbose:
-                    print(f"Error {response.status_code}: {response.reason}")
-                if response.status_code == 503 or response.status_code == 504:
+                try:
+                    responseJson = response.json()
+                except JSONDecodeError:
                     if verbose:
-                        print(f"Retrying record offset {response.url[-4:]}...")
-                    time.sleep(1)
-                    retry = True
+                        print(f"Error {response.status_code}: {response.reason}")
+                    if response.status_code == 503 or response.status_code == 504:
+                        if verbose:
+                            print(f"Retrying record offset {response.url[-4:]}...")
+                        time.sleep(1)
+                        retry = True
+                    else:
+                        retry = False
                 else:
                     retry = False
-            else:
-                retry = False
 
             if responseJson is None:
+                if verbose:
+                    print(f"Failed to fetch {offset}")
                 continue
 
             offset = responseJson["offset"]
