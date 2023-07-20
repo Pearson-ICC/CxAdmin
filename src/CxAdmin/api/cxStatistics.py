@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Any, Generator
 from CxAdmin.api.cxItem import CxItem
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 class CxStatistics(CxItem[dict[str, Any]]):
@@ -35,6 +36,42 @@ class CxStatistics(CxItem[dict[str, Any]]):
                 yield result
             if offset >= responseJson["total"]:
                 break
+
+    def getInteractionsInParallel(
+        self,
+        between: tuple[datetime, datetime],
+        verbose: bool = False,
+        numThreads: int | None = None,
+    ) -> Generator[dict[str, Any], None, None]:
+        # check dates are in the correct order
+        if between[0] > between[1]:
+            raise ValueError("Dates must be in chronological order")
+        betweenStr = [b.isoformat() for b in between]
+        offset = 0
+        params = f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=0&offset={offset}"
+        total = self._httpClient.get(f"{self._path}/interactions{params}").json()[
+            "total"
+        ]
+
+        with ThreadPoolExecutor(numThreads) as executor:
+            futures = []
+            while offset < total:
+                params = f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
+                futures.append(
+                    executor.submit(
+                        self._httpClient.get, f"{self._path}/interactions{params}"
+                    )
+                )
+                offset += 1000
+                if verbose:
+                    print(f"Fetched record {offset} of {total}")
+            for future in as_completed(futures):
+                responseJson = future.result().json()
+                responseResults = responseJson["results"]
+                if responseResults is None:
+                    break
+                for result in responseResults:
+                    yield result
 
     # def get(self) -> list[dict[str, Any]]:
     # statsJson: list[dict[str, Any]] = self._httpClient.get(
