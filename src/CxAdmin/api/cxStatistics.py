@@ -3,6 +3,7 @@ from typing import Any, Generator
 from CxAdmin.api.cxItem import CxItem
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from requests import JSONDecodeError
+import time
 
 
 class CxStatistics(CxItem[dict[str, Any]]):
@@ -13,37 +14,52 @@ class CxStatistics(CxItem[dict[str, Any]]):
         self,
         between: tuple[datetime, datetime],
         verbose: bool = False,
-    ) -> Generator[dict[str, Any], None, None]:
+    ) -> list[dict[str, Any]]:
+        allCalls: list[dict[str, Any]] = []
         # check dates are in the correct order
         if between[0] > between[1]:
             raise ValueError("Dates must be in chronological order")
         betweenStr = [b.isoformat() for b in between]
         offset = 0
-        while True:
+        retry = True
+        while retry:
             params = (
                 f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
             )
+            response = self._httpClient.get(f"{self._path}/interactions{params}")
             responseJson: dict[str, Any] | None = None
-            while responseJson is None:
-                try:
-                    responseJson = self._httpClient.get(
-                        f"{self._path}/interactions{params}"
-                    ).json()
-                except JSONDecodeError as e:
+
+            try:
+                responseJson = response.json()
+            except JSONDecodeError:
+                if verbose:
+                    print(f"Error {response.status_code}: {response.reason}")
+                if response.status_code == 503 or response.status_code == 504:
                     if verbose:
-                        print(f"JSONDecodeError: {e}")
+                        print(f"Retrying record offset {response.url[-4:]}...")
+                    time.sleep(1)
+                    retry = True
+                else:
+                    retry = False
+            else:
+                retry = False
+
+            if responseJson is None:
+                continue
+
+            offset = responseJson["offset"]
+            total = responseJson["total"]
+
             if verbose:
-                offset = responseJson["offset"]
-                total = responseJson["total"]
                 print(f"Fetched record {offset} of {total}")
             responseResults = responseJson["results"]
             if responseResults is None:
                 break
-            for result in responseResults:
-                offset += 1
-                yield result
-            if offset >= responseJson["total"]:
+            allCalls.extend(responseResults)
+            if offset >= total:
                 break
+
+        return allCalls
 
     def getInteractionsInParallel(
         self,
@@ -64,7 +80,11 @@ class CxStatistics(CxItem[dict[str, Any]]):
 
         with ThreadPoolExecutor(numThreads) as executor:
             futures = []
+            if verbose:
+                print(f"Mapping request executors across {numThreads} threads…")
             while offset < total:
+                if verbose:
+                    print(f"Mapping request {offset} of {total}…")
                 params = f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
                 futures.append(
                     executor.submit(
@@ -72,14 +92,32 @@ class CxStatistics(CxItem[dict[str, Any]]):
                     )
                 )
                 offset += 1000
+
+            if verbose:
+                print("Waiting for responses…")
+
             for future in as_completed(futures):
                 responseJson: dict[str, Any] | None = None
-                while responseJson is None:
+                retry = True
+                while retry:
                     try:
                         responseJson = future.result().json()
                     except JSONDecodeError as e:
+                        statusCode = future.result().status_code
                         if verbose:
-                            print(f"JSONDecodeError: {e}")
+                            print(f"Error {statusCode}: {future.result().reason}")
+                        if statusCode == 503 or statusCode == 504:
+                            if verbose:
+                                print(
+                                    f"Retrying record offset {future.result().url[-4:]}..."
+                                )
+                            time.sleep(5)
+                            retry = True
+                        else:
+                            retry = False
+                    else:
+                        retry = False
+
                 responseResults = responseJson["results"]
                 offset = responseJson["offset"]
                 total = responseJson["total"]
