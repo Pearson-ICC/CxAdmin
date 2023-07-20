@@ -59,6 +59,7 @@ class CxStatistics(CxItem[dict[str, Any]]):
             responseResults = responseJson["results"]
             if responseResults is None:
                 break
+            offset += len(responseResults)
             allCalls.extend(responseResults)
             if offset >= total:
                 break
