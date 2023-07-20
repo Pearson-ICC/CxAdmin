@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Any, Generator
 from CxAdmin.api.cxItem import CxItem
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from requests import JSONDecodeError
 
 
 class CxStatistics(CxItem[dict[str, Any]]):
@@ -22,8 +23,15 @@ class CxStatistics(CxItem[dict[str, Any]]):
             params = (
                 f"?start={betweenStr[0]}&end={betweenStr[1]}&limit=1000&offset={offset}"
             )
-            response = self._httpClient.get(f"{self._path}/interactions{params}")
-            responseJson = response.json()
+            responseJson: dict[str, Any] | None = None
+            while responseJson is None:
+                try:
+                    responseJson = self._httpClient.get(
+                        f"{self._path}/interactions{params}"
+                    ).json()
+                except JSONDecodeError as e:
+                    if verbose:
+                        print(f"JSONDecodeError: {e}")
             if verbose:
                 offset = responseJson["offset"]
                 total = responseJson["total"]
@@ -41,8 +49,8 @@ class CxStatistics(CxItem[dict[str, Any]]):
         self,
         between: tuple[datetime, datetime],
         verbose: bool = False,
-        numThreads: int | None = None,
-    ) -> Generator[dict[str, Any], None, None]:
+        numThreads: int | None = 64,
+    ) -> list[dict[str, Any]]:
         # check dates are in the correct order
         if between[0] > between[1]:
             raise ValueError("Dates must be in chronological order")
@@ -52,6 +60,7 @@ class CxStatistics(CxItem[dict[str, Any]]):
         total = self._httpClient.get(f"{self._path}/interactions{params}").json()[
             "total"
         ]
+        allInteractions: list[dict[str, Any]] = []
 
         with ThreadPoolExecutor(numThreads) as executor:
             futures = []
@@ -63,15 +72,25 @@ class CxStatistics(CxItem[dict[str, Any]]):
                     )
                 )
                 offset += 1000
+            for future in as_completed(futures):
+                responseJson: dict[str, Any] | None = None
+                while responseJson is None:
+                    try:
+                        responseJson = future.result().json()
+                    except JSONDecodeError as e:
+                        if verbose:
+                            print(f"JSONDecodeError: {e}")
+                responseResults = responseJson["results"]
+                offset = responseJson["offset"]
+                total = responseJson["total"]
                 if verbose:
                     print(f"Fetched record {offset} of {total}")
-            for future in as_completed(futures):
-                responseJson = future.result().json()
-                responseResults = responseJson["results"]
                 if responseResults is None:
                     break
-                for result in responseResults:
-                    yield result
+                allInteractions.extend(responseResults)
+
+        print(f"Fetched {len(allInteractions)} interactions")
+        return allInteractions
 
     # def get(self) -> list[dict[str, Any]]:
     # statsJson: list[dict[str, Any]] = self._httpClient.get(
